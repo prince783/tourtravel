@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { BlurText } from "@/components/BlurText";
 import { CallButton } from "@/components/CallButton";
 import { Navbar } from "@/components/Navbar";
 import { PackageCard } from "@/components/PackageCard";
@@ -15,28 +16,34 @@ export default function Home() {
       <main className="bg-stone-50 text-slate-900">
         <section className="relative isolate overflow-hidden">
           <div className="absolute inset-0">
-            <Image
-              src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80"
-              alt="Pilgrimage travel scene in India"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-label="Pilgrimage travel experiences"
+              className="h-full w-full object-cover"
+            >
+              <source src="/HeroVideo/tourvideo.mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 bg-slate-950/45" />
           </div>
 
           <div className="relative mx-auto flex min-h-[680px] max-w-7xl items-center px-4 py-24 md:px-6">
             <div className="max-w-2xl text-white">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-amber-300">
-                Premium Pilgrimage Tours
-              </p>
+              <BlurText
+                text="Premium Pilgrimage Tours"
+                delay={100}
+                className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-amber-300"
+              />
               <h1 className="text-4xl font-black tracking-tight md:text-6xl">
-                Divine Journeys, Lifetime Memories
+                <BlurText text="Divine Journeys, Lifetime Memories" delay={250} />
               </h1>
-              <p className="mt-6 max-w-xl text-lg text-slate-200 md:text-xl">
-                Gauri Shyam Sakshi Travels helps families and groups plan spiritually uplifting journeys with comfortable travel, trusted support and memorable experiences.
-              </p>
+              <BlurText
+                text="Gauri Shyam Sakshi Travels helps families and groups plan spiritually uplifting journeys with comfortable travel, trusted support and memorable experiences."
+                delay={450}
+                className="mt-6 block max-w-xl text-lg text-slate-200 md:text-xl"
+              />
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <Link href="/packages" className="inline-flex items-center justify-center rounded-full bg-amber-400 px-6 py-3.5 font-semibold text-slate-900 transition hover:bg-amber-300">
                   Explore Packages
@@ -52,8 +59,8 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[1.1fr_1.4fr] lg:items-center">
             <div className="overflow-hidden rounded-[28px] shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
               <Image
-                src="https://images.unsplash.com/photo-1534996858221-380b92700493?auto=format&fit=crop&w=900&q=80"
-                alt="Representative portrait"
+                src="/abouthome.jpg"
+                alt="Gauri Shyam Sakshi Travels representative"
                 width={900}
                 height={1000}
                 className="h-full w-full object-cover"

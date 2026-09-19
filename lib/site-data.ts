@@ -14,8 +14,8 @@ export type TourPackage = {
   meals?: string[];
   inclusions?: string[];
   description?: string;
-  featured?: boolean;
   highlights?: string[];
+  featured?: boolean;
 };
 
 export type Destination = {
@@ -26,32 +26,98 @@ export type Destination = {
   relatedPackages: string[];
 };
 
-export type ServiceItem = {
-  title: string;
-  description: string;
-};
-
 export const business = {
   name: "Gauri Shyam Sakshi Travels",
-  location: "Yamuna Nagar, Haryana, India",
-  phoneDisplay: "97289 86528",
-  phoneNumber: "9728986528",
-  phoneHref: "tel:+919728986528",
-  whatsappNumber: "919728986528",
-  whatsappHref: "https://wa.me/919728986528",
-  email: "krishnagupta20080621@gmail.com",
-  emailHref: "mailto:krishnagupta20080621@gmail.com",
+  location: "Yamuna Nagar, Haryana",
+  phone: "+919999999999",
+  phoneDisplay: "+91 99999 99999",
+  phoneHref: "tel:+919999999999",
+  whatsappNumber: "919999999999",
+  whatsappHref: "https://wa.me/919999999999",
+  email: "gaurisyam.sakshi@gmail.com",
+  emailHref: "mailto:gaurisyam.sakshi@gmail.com",
 };
+
+export const destinations: Destination[] = [
+  {
+    slug: "vaishno-devi",
+    name: "Vaishno Devi",
+    image: "/packages/vaishnodevi.webp",
+    description: "A revered Shakti pilgrimage known for its scenic trek and spiritual atmosphere.",
+    relatedPackages: ["Vaishno Devi - Shiv Khori - Amritsar"],
+  },
+  {
+    slug: "badrinath-kedarnath",
+    name: "Badrinath & Kedarnath",
+    image: "/packages/badrinath.jpg",
+    description: "Sacred Himalayan yatra destinations offering devotion, serenity and mountain views.",
+    relatedPackages: ["Badrinath & Kedarnath Yatra"],
+  },
+  {
+    slug: "vrindavan",
+    name: "Vrindavan",
+    image: "/packages/vrindavan.jpg",
+    description: "The divine land of Krishna with temples, ghats and a deeply spiritual ambience.",
+    relatedPackages: ["Shri Vrindavan Dham"],
+  },
+  {
+    slug: "amritsar",
+    name: "Amritsar",
+    image: "/packages/vaishnodevi.webp",
+    description: "Home to the Golden Temple and a significant spiritual and cultural pilgrimage stop.",
+    relatedPackages: ["Vaishno Devi - Shiv Khori - Amritsar"],
+  },
+  {
+    slug: "ujjain",
+    name: "Ujjain",
+    image: "/packages/ujjain.jpg",
+    description: "A sacred city on the banks of the Shipra river with famous Jyotirlinga sites.",
+    relatedPackages: ["Ujjain Yatra - Sanwariya Seth"],
+  },
+  {
+    slug: "khatu-shyam",
+    name: "Khatu Shyam",
+    image: "/packages/Khatushyam.png",
+    description: "A spiritually vibrant destination known for Khatu Shyam Ji and nearby holy stops.",
+    relatedPackages: ["Khatu Shyam Dham Yatra"],
+  },
+];
+
+export const services = [
+  {
+    title: "Pilgrimage Tour Planning",
+    description: "Guidance for temple and spiritual journeys, including route planning and trip support for devotees and family groups.",
+  },
+  {
+    title: "Group Travel Coordination",
+    description: "Organised travel support for families and groups visiting sacred destinations with comfort and clear communication.",
+  },
+  {
+    title: "Pickup & Transport Support",
+    description: "Convenient pickup coordination and travel logistics to help families reach destinations with ease.",
+  },
+  {
+    title: "Accommodation Assistance",
+    description: "Support for stay arrangements and room coordination when the travel itinerary includes overnight rest stops.",
+  },
+  {
+    title: "Custom Itinerary Guidance",
+    description: "Tailored support for multiple destinations, temple visits and curated travel experiences based on each group’s needs.",
+  },
+  {
+    title: "Enquiry & Booking Support",
+    description: "Direct assistance for package enquiries, schedule confirmation and latest trip updates before travel.",
+  },
+];
 
 export const packages: TourPackage[] = [
   {
     id: "delhi-darshan",
     slug: "delhi-darshan",
     name: "Delhi Darshan",
-    image:
-      "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1200&q=80",
+    image: "/packages/delhidarshan.webp",
     price: "₹1,000/person",
-    date: "Reference date: pending client confirmation",
+    date: "2 August 2026",
     duration: "1 Day",
     pickupPoints: [
       "Chandigarh",
@@ -61,83 +127,83 @@ export const packages: TourPackage[] = [
       "Jagadhri",
       "Yamunanagar",
     ],
-    placesToVisit: ["Akshardham Temple", "Kalkaji Mandir", "Khatu Shyam Delhi Dham"],
-    description:
-      "A convenient day pilgrimage and sightseeing tour covering important temples and spiritual locations in and around Delhi.",
-    highlights: ["Refreshments", "Temple visit", "Sightseeing"],
-    meals: ["Refreshments"],
-    inclusions: ["Temple visit", "Sightseeing support"],
-    featured: true,
-  },
-  {
-    id: "vrindavan-dham",
-    slug: "vrindavan-dham",
-    name: "Shri Vrindavan Dham",
-    image:
-      "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80",
-    price: "₹2,200/person",
-    date: "Reference date: pending client confirmation",
-    duration: "2 Days / 1 Night",
-    pickupPoints: [
-      "Chandigarh",
-      "Jagadhri",
-      "Ambala",
-      "Bilaspur",
-      "Yamunanagar",
-      "Radore",
-      "Ladwa",
-    ],
-    placesToVisit: ["Vrindavan Dham", "Temples and sacred sites"],
-    description:
-      "A devotional journey designed for families and groups seeking a spiritual visit to the divine land of Vrindavan.",
-    highlights: ["AC bus", "Stay", "Food"],
-    transport: "AC Bus",
-    accommodation: "Stay included",
-    meals: ["Meals included"],
-    inclusions: ["Accommodation", "Meals", "Travel support"],
-    featured: true,
-  },
-  {
-    id: "vaishno-devi-dham-amritsar",
-    slug: "vaishno-devi-dham-amritsar",
-    name: "Vaishno Devi Dham / Amritsar",
-    image:
-      "https://images.unsplash.com/photo-1561489412-90c7d545d6b8?auto=format&fit=crop&w=1200&q=80",
-    price: "Starting ₹3,000/person",
-    date: "Reference date: pending client confirmation",
-    duration: "Tour package",
-    pickupPoints: ["Yamuna Nagar", "Jagadhri", "Ambala", "Chandigarh"],
     placesToVisit: [
-      "Vaishno Devi Yatra / Trek",
+      "Akshardham Temple",
+      "Kalkaji Mandir",
+      "Khatu Shyam Delhi Dham",
+    ],
+    transport: "Bus",
+    meals: ["Refreshments included"],
+    inclusions: ["Temple Visit", "Sightseeing", "Refreshments"],
+    description:
+      "A one-day Delhi Darshan pilgrimage and sightseeing tour covering Akshardham Temple, Kalkaji Mandir and Khatu Shyam Delhi Dham, with convenient pickup points across the region.",
+    highlights: [
+      "₹1,000 per person",
+      "Refreshments included",
+      "Temple Visit",
+      "Sightseeing",
+      "Multiple pickup points",
+    ],
+    featured: true,
+  },
+  {
+    id: "vaishno-devi-shiv-khori-amritsar",
+    slug: "vaishno-devi-shiv-khori-amritsar",
+    name: "Vaishno Devi - Shiv Khori - Amritsar",
+    image: "/packages/vaishnodevi.webp",
+    price: "₹3,000/person",
+    date: "3 July to 9 July 2026",
+    duration: "7 Days",
+    pickupPoints: ["Yamunanagar", "Jagadhri", "Ambala", "Chandigarh"],
+    placesToVisit: [
+      "Vaishno Devi",
       "Shiv Khori",
       "Amritsar",
       "Golden Temple",
       "Wagah Border",
     ],
-    description:
-      "A combined spiritual and cultural tour covering revered shrines and heritage destinations across the region.",
-    highlights: ["AC Deluxe Bus", "Attached-bathroom rooms", "4 meals"],
     transport: "AC Deluxe Bus",
-    accommodation: "Attached-bathroom rooms",
-    meals: ["4 meals"],
-    inclusions: ["Travel", "Accommodation", "Meals"],
+    accommodation: "Rooms with attached bathroom",
+    meals: ["2 Breakfast", "2 Dinner"],
+    inclusions: [
+      "AC Deluxe Bus",
+      "Rooms with attached bathroom",
+      "4 Meals",
+      "2 Breakfast",
+      "2 Dinner",
+      "Vaishno Devi Yatra (Trek)",
+      "Shiv Khori Gufa Darshan",
+      "Amritsar Golden Temple",
+      "Wagah Border",
+    ],
+    description:
+      "A spiritual and cultural tour covering Vaishno Devi Yatra, Shiv Khori Gufa Darshan and the major attractions of Amritsar including the Golden Temple and Wagah Border.",
+    highlights: [
+      "₹3,000 per person",
+      "AC Deluxe Bus",
+      "Rooms with attached bathroom",
+      "4 Meals",
+      "Vaishno Devi Yatra",
+      "Shiv Khori Gufa Darshan",
+      "Golden Temple",
+      "Wagah Border",
+    ],
     featured: true,
   },
   {
     id: "ujjain-yatra",
     slug: "ujjain-yatra",
-    name: "Ujjain Yatra",
-    image:
-      "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80",
-    price: "Starting ₹6,500/person",
-    date: "Reference date: pending client confirmation",
-    duration: "Pilgrimage itinerary",
+    name: "Ujjain Yatra - Sanwariya Seth",
+    image: "/packages/ujjain.jpg",
+    price: "₹6,500/person",
+    date: "7 August to 13 August",
+    duration: "7 Days",
     pickupPoints: [
       "Chandigarh",
       "Ambala",
       "Bilaspur",
       "Jagadhri",
-      "Yamuna Nagar",
+      "Yamunanagar",
       "Radore",
       "Ladwa",
       "Kurukshetra",
@@ -146,208 +212,235 @@ export const packages: TourPackage[] = [
       "Pushkar",
       "Ujjain",
       "Omkareshwar Jyotirlinga",
-      "Sanwaria Seth",
+      "Mahakaleshwar Jyotirlinga",
+      "Sanwariya Seth",
       "Khatu Shyam Ji",
       "Salasar Balaji",
       "Anjani Mata Mandir",
-      "Agra Dham",
+      "Agroha Dham",
+    ],
+    transport: "AC Deluxe Bus",
+    accommodation: "Rooms with attached bathroom",
+    meals: ["Breakfast", "Dinner"],
+    inclusions: [
+      "AC Deluxe Bus",
+      "Rooms with attached bathroom",
+      "Breakfast",
+      "Dinner",
     ],
     description:
-      "A spiritually rich pilgrimage covering sacred destinations and temple visits across the route.",
-    highlights: ["AC Deluxe Bus", "Attached-bathroom rooms", "Breakfast & dinner"],
-    transport: "AC Deluxe Bus",
-    accommodation: "Attached-bathroom rooms",
-    meals: ["Breakfast", "Dinner"],
-    inclusions: ["Travel", "Accommodation", "Meals"],
+      "A seven-day spiritual pilgrimage covering Pushkar, Ujjain, Omkareshwar Jyotirlinga, Mahakaleshwar Jyotirlinga, Sanwariya Seth, Khatu Shyam Ji, Salasar Balaji, Anjani Mata Mandir and Agroha Dham.",
+    highlights: [
+      "₹6,500 per person",
+      "AC Deluxe Bus",
+      "Rooms with attached bathroom",
+      "Breakfast & Dinner",
+      "Ujjain Darshan",
+      "Omkareshwar Jyotirlinga",
+      "Mahakaleshwar Jyotirlinga",
+      "Sanwariya Seth",
+      "Khatu Shyam Ji",
+      "Salasar Balaji",
+    ],
     featured: true,
   },
   {
-    id: "khatu-shyam-ji-yatra",
-    slug: "khatu-shyam-ji-yatra",
-    name: "Khatu Shyam Ji Yatra",
-    image:
-      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=80",
+    id: "goga-madi-bagad-rajasthan",
+    slug: "goga-madi-bagad-rajasthan",
+    name: "Goga Madi - Bagad Rajasthan",
+    image: "/packages/godamadi.jpg",
+    price: "₹2,000/person",
+    date: "16 September 2026 - 20 September 2026",
+    duration: "5 Days / 4 Nights",
+    pickupPoints: ["Yamunanagar", "Jagadhri", "Bilaspur", "Ambala", "Saharanpur"],
+    placesToVisit: ["Goga Ji", "Shiv Khori", "Mata Vaishno Devi", "Mata Kali", "Bagad Rajasthan"],
+    transport: "Bus",
+    inclusions: [
+      "Bus Travel",
+      "Religious Yatra",
+      "Goga Ji Darshan",
+      "Bagad Rajasthan Yatra",
+    ],
+    description:
+      "A religious journey to Goga Madi and Bagad Rajasthan with convenient pickup points from Yamunanagar, Jagadhri, Bilaspur, Ambala and Saharanpur.",
+    highlights: [
+      "₹2,000 per person",
+      "16 September 2026 departure",
+      "20 September 2026 return",
+      "Goga Ji Darshan",
+      "Bagad Rajasthan",
+      "Multiple pickup points",
+    ],
+    featured: true,
+  },
+  {
+    id: "khatu-shyam-dham-yatra",
+    slug: "khatu-shyam-dham-yatra",
+    name: "Khatu Shyam Dham Yatra",
+    image: "/packages/Khatushyam.png",
     price: "₹2,100/seat",
     advance: "₹1,000/seat",
-    date: "Reference date: pending client confirmation",
-    duration: "1 to 2 days",
-    pickupPoints: ["Yamuna Nagar", "Jagadhri", "Ambala", "Chandigarh"],
-    placesToVisit: ["Salasar Balaji", "Anjani Mata Mandir", "Khatu Shyam Ji"],
-    description:
-      "A focused pilgrimage to revered temples with convenient bus travel and shared accommodation arrangements.",
-    highlights: ["AC Deluxe Bus", "Attached-bathroom rooms", "2 breakfasts, 3 dinners"],
+    date: "20 June to 22 June 2026",
+    duration: "2 Days / 1 Night",
+    pickupPoints: [
+      "Chandigarh",
+      "Zirakpur",
+      "Ambala",
+      "Mullana",
+      "Jagadhri",
+      "Yamunanagar",
+      "Radore",
+      "Ladwa",
+      "Kurukshetra",
+    ],
+    placesToVisit: [
+      "Salasar Balaji",
+      "Anjani Mata Mandir",
+      "Khatu Shyam Ji",
+      "Agroha Dham",
+      "Selfie Point",
+    ],
     transport: "AC Deluxe Bus",
-    accommodation: "Attached-bathroom rooms",
-    meals: ["2 breakfasts", "3 dinners"],
-    inclusions: ["Travel", "Accommodation", "Meals"],
+    accommodation: "Rooms with attached bathroom",
+    meals: ["2 Breakfast", "3 Dinner", "Refreshments"],
+    inclusions: [
+      "AC Deluxe Bus",
+      "Rooms with attached bathroom",
+      "2 Breakfast",
+      "3 Dinner",
+      "Refreshments",
+      "Salasar Balaji Darshan",
+      "Anjani Mata Mandir Darshan",
+      "Khatu Shyam Ji Darshan",
+      "Agroha Dham Visit",
+      "Selfie Point",
+    ],
+    description:
+      "A two-day devotional journey to Khatu Shyam Dham covering Salasar Balaji, Anjani Mata Mandir, Khatu Shyam Ji, Agroha Dham and a selfie point, with AC Deluxe Bus travel, accommodation and meals included.",
+    highlights: [
+      "₹2,100 per seat",
+      "Advance booking ₹1,000 per seat",
+      "2 Days / 1 Night",
+      "AC Deluxe Bus",
+      "Rooms with attached bathroom",
+      "2 Breakfast",
+      "3 Dinner",
+      "Refreshments",
+      "Salasar Balaji",
+      "Khatu Shyam Ji",
+      "Agroha Dham",
+    ],
     featured: true,
   },
   {
-    id: "nakodar-darbar-sakoon",
-    slug: "nakodar-darbar-sakoon",
-    name: "Nakodar Darbar / Sakoon",
-    image:
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
-    price: "Pending client confirmation",
-    date: "Pending client confirmation",
-    duration: "Pending client confirmation",
-    pickupPoints: ["Yamuna Nagar"],
-    placesToVisit: ["Nakodar Darbar", "Sakoon"],
+    id: "badrinath-kedarnath-yatra",
+    slug: "badrinath-kedarnath-yatra",
+    name: "Badrinath & Kedarnath Yatra",
+    image: "/packages/badrinath.jpg",
+    price: "₹9,500/person",
+    date: "10 June to 16 June 2026",
+    duration: "7 Days",
+    pickupPoints: ["Chandigarh", "Ambala", "Yamunanagar"],
+    placesToVisit: [
+      "Badrinath",
+      "Kedarnath",
+      "Hanuman Chatti",
+      "Dhara Devi Mandir",
+      "Devprayag",
+      "Haridwar",
+      "Rishikesh",
+    ],
+    transport: "AC 2x2 Push Back Bus",
+    inclusions: [
+      "AC 2x2 Push Back Bus",
+      "Badrinath Yatra",
+      "Kedarnath Yatra",
+      "Hanuman Chatti",
+      "Dhara Devi Mandir",
+      "Devprayag",
+      "Haridwar",
+      "Rishikesh",
+    ],
     description:
-      "A bus yatra from Yamuna Nagar to Nakodar. Full package details are pending confirmation from the client.",
-    highlights: ["Bus yatra", "Pending confirmation"],
-    featured: false,
+      "A seven-day Himalayan pilgrimage covering Badrinath and Kedarnath along with important spiritual destinations including Hanuman Chatti, Dhara Devi Mandir, Devprayag, Haridwar and Rishikesh.",
+    highlights: [
+      "₹9,500 per person",
+      "10 June to 16 June 2026",
+      "AC 2x2 Push Back Bus",
+      "Badrinath",
+      "Kedarnath",
+      "Hanuman Chatti",
+      "Dhara Devi Mandir",
+      "Devprayag",
+      "Haridwar",
+      "Rishikesh",
+    ],
+    featured: true,
   },
   {
-    id: "badrinath-kedarnath",
-    slug: "badrinath-kedarnath",
-    name: "Badrinath & Kedarnath",
-    image:
-      "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=80",
-    price: "₹9,500/traveller",
-    date: "Reference date: pending client confirmation",
-    duration: "Pilgrimage route",
-    pickupPoints: ["Yamuna Nagar", "Jagadhri", "Ambala", "Chandigarh"],
-    placesToVisit: ["Hanuman Chatti", "Dhara Devi Mandir", "Devprayag", "Haridwar", "Rishikesh"],
+    id: "shri-vrindavan-dham",
+    slug: "shri-vrindavan-dham",
+    name: "Shri Vrindavan Dham",
+    image: "/packages/vrindavan.jpg",
+    price: "₹2,200/person",
+    date: "15 July to 18 July 2026",
+    duration: "4 Days",
+    pickupPoints: ["Chandigarh", "Ambala", "Bilaspur", "Jagadhri", "Yamunanagar", "Radore", "Ladwa"],
+    placesToVisit: [
+      "Mathura",
+      "Barsana",
+      "Govardhan",
+      "Raman Reti",
+      "Char Dham Mandir",
+      "Nidhivan",
+      "Prem Mandir",
+      "ISKCON Mandir",
+      "Shri Banke Bihari Mandir",
+      "Radha Vallabh Mandir",
+      "Radha Raman Mandir",
+    ],
+    transport: "AC Bus",
+    accommodation: "Stay included",
+    meals: ["Food included"],
+    inclusions: [
+      "AC Bus",
+      "Travel",
+      "Accommodation",
+      "Food",
+      "Darshan / sightseeing at listed destinations",
+    ],
     description:
-      "A premium Himalayan yatra route highlighting some of the most sacred stops on the journey.",
-    highlights: ["AC 2x2 push-back bus", "Pilgrimage route"],
-    transport: "AC 2x2 push-back bus",
-    inclusions: ["Bus travel", "Pilgrimage route support"],
+      "A four-day Shri Vrindavan Dham pilgrimage covering Mathura, Barsana, Govardhan, Raman Reti, Char Dham Mandir, Nidhivan, Prem Mandir, ISKCON Mandir, Shri Banke Bihari Mandir, Radha Vallabh Mandir and Radha Raman Mandir.",
+    highlights: [
+      "₹2,200 per person",
+      "15 July to 18 July 2026",
+      "AC Bus",
+      "Travel included",
+      "Stay included",
+      "Food included",
+      "Mathura",
+      "Barsana",
+      "Govardhan",
+      "Prem Mandir",
+      "ISKCON Mandir",
+      "Shri Banke Bihari Mandir",
+    ],
     featured: true,
   },
 ];
 
 export const featuredPackages = packages.filter((pkg) => pkg.featured);
 
-export const destinations: Destination[] = [
-  {
-    slug: "vrindavan",
-    name: "Vrindavan",
-    image:
-      "https://images.unsplash.com/photo-1603250840238-0c9d9ca8ea53?auto=format&fit=crop&w=1200&q=80",
-    description: "A devotional destination known for its spiritual significance and vibrant temple culture.",
-    relatedPackages: ["Shri Vrindavan Dham"],
-  },
-  {
-    slug: "vaishno-devi",
-    name: "Vaishno Devi",
-    image:
-      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=80",
-    description: "A revered pilgrimage destination with a well-known yatra route and spiritual atmosphere.",
-    relatedPackages: ["Vaishno Devi Dham / Amritsar"],
-  },
-  {
-    slug: "amritsar",
-    name: "Amritsar",
-    image:
-      "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1200&q=80",
-    description: "A destination known for its cultural heritage and sacred religious importance.",
-    relatedPackages: ["Vaishno Devi Dham / Amritsar"],
-  },
-  {
-    slug: "ujjain",
-    name: "Ujjain",
-    image:
-      "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80",
-    description: "A spiritually important destination with a deep-rooted pilgrimage tradition.",
-    relatedPackages: ["Ujjain Yatra"],
-  },
-  {
-    slug: "khatu-shyam-ji",
-    name: "Khatu Shyam Ji",
-    image:
-      "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80",
-    description: "A dedicated pilgrimage destination that attracts devotees throughout the year.",
-    relatedPackages: ["Khatu Shyam Ji Yatra"],
-  },
-  {
-    slug: "salasar-balaji",
-    name: "Salasar Balaji",
-    image:
-      "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80",
-    description: "A sacred stop for devotees undertaking a temple-focused pilgrimage journey.",
-    relatedPackages: ["Khatu Shyam Ji Yatra", "Ujjain Yatra"],
-  },
-  {
-    slug: "badrinath",
-    name: "Badrinath",
-    image:
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
-    description: "A Himalayan pilgrimage destination known for its spiritual atmosphere and scenic route.",
-    relatedPackages: ["Badrinath & Kedarnath"],
-  },
-  {
-    slug: "kedarnath",
-    name: "Kedarnath",
-    image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-    description: "A revered Himalayan shrine destination often included in high-altitude pilgrim journeys.",
-    relatedPackages: ["Badrinath & Kedarnath"],
-  },
-  {
-    slug: "haridwar",
-    name: "Haridwar",
-    image:
-      "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=80",
-    description: "A popular spiritual destination noted for its sacred ghats and pilgrim travel routes.",
-    relatedPackages: ["Badrinath & Kedarnath"],
-  },
-  {
-    slug: "rishikesh",
-    name: "Rishikesh",
-    image:
-      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80",
-    description: "A spiritual and scenic destination on the journey to the Himalayan shrines.",
-    relatedPackages: ["Badrinath & Kedarnath"],
-  },
-];
-
-export const services: ServiceItem[] = [
-  {
-    title: "Tour & travel packages",
-    description: "Curated pilgrimage and religious tour plans designed for easy group travel and pure spiritual focus.",
-  },
-  {
-    title: "Pilgrimage / religious yatra",
-    description: "Dedicated yatras to temples, shrines and spiritually significant destinations across the route.",
-  },
-  {
-    title: "Group bus travel",
-    description: "Comfortable group travel arrangements for pilgrims and families seeking shared transport support.",
-  },
-  {
-    title: "Destination-specific tours",
-    description: "Customised tours for destinations such as Vrindavan, Vaishno Devi, Ujjain, Haridwar and more.",
-  },
-  {
-    title: "Package enquiry and booking assistance",
-    description: "Assistance with understanding package details, dates and availability before planning your trip.",
-  },
-  {
-    title: "Accommodation where included",
-    description: "Comfort-oriented stay support included in selected package details as shared by the client.",
-  },
-  {
-    title: "Meals where included",
-    description: "Meal support included in select packages, with details marked as reference information.",
-  },
-  {
-    title: "Transport arrangements where offered",
-    description: "Travel arrangements are provided for packages where the client has specified transport details.",
-  },
-];
-
 export function getPackageBySlug(slug: string) {
-  return packages.find((item) => item.slug === slug);
+  return packages.find((pkg) => pkg.slug === slug);
 }
 
-export function getWhatsAppUrl(message: string) {
+export function getWhatsAppUrl(message = "Hello, I would like to know more about Gauri Shyam Sakshi Travels tour packages.") {
   return `https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
 export function getPackageWhatsAppMessage(packageName: string) {
-  return `Hello, I am interested in the ${packageName} package. Please share the latest details, date and availability.`;
+  return `Hello, I would like to enquire about the ${packageName} package.`;
 }
 
 export function getGeneralWhatsAppMessage() {

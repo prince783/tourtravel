@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { Footer } from "@/components/Footer";
+import { MobileBottomCta } from "@/components/MobileBottomCta";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,8 +31,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full bg-stone-50 text-slate-900">
-        <div className="min-h-screen">{children}</div>
+        <div className="min-h-screen pb-20 md:pb-0">{children}</div>
         <Footer />
+        <FloatingWhatsApp />
+        <MobileBottomCta />
       </body>
     </html>
   );

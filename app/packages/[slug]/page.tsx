@@ -8,8 +8,13 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { business, getPackageBySlug, getPackageWhatsAppMessage } from "@/lib/site-data";
 
-export default function PackageDetailsPage({ params }: { params: { slug: string } }) {
-  const pkg = getPackageBySlug(params.slug);
+export default async function PackageDetailsPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const pkg = getPackageBySlug(slug);
 
   if (!pkg) {
     notFound();
