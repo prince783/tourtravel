@@ -2,17 +2,22 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CalendarDays, Clock3, MapPin } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CalendarDays,
+  Clock3,
+  MapPin,
+} from "lucide-react";
 import { useEffect, useState, type KeyboardEvent } from "react";
 
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { featuredPackages, getPackageWhatsAppMessage } from "@/lib/site-data";
 
-const AUTOPLAY_DELAY = 2000;
+const AUTOPLAY_DELAY = 4000;
 
 export function FeaturedJourneys() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
   const activePackage = featuredPackages[activeIndex];
@@ -23,14 +28,14 @@ export function FeaturedJourneys() {
   const nextPackage =
     featuredPackages[(activeIndex + 1) % featuredPackages.length];
 
-  const isPaused = isHovered || isFocused;
+  const isPaused = isFocused;
 
   useEffect(() => {
     if (isPaused || featuredPackages.length < 2) return;
 
     const timeoutId = window.setTimeout(() => {
       setActiveIndex(
-        (currentIndex) => (currentIndex + 1) % featuredPackages.length
+        (currentIndex) => (currentIndex + 1) % featuredPackages.length,
       );
     }, AUTOPLAY_DELAY);
 
@@ -42,13 +47,12 @@ export function FeaturedJourneys() {
   const goPrevious = () =>
     setActiveIndex(
       (currentIndex) =>
-        (currentIndex - 1 + featuredPackages.length) %
-        featuredPackages.length
+        (currentIndex - 1 + featuredPackages.length) % featuredPackages.length,
     );
 
   const goNext = () =>
     setActiveIndex(
-      (currentIndex) => (currentIndex + 1) % featuredPackages.length
+      (currentIndex) => (currentIndex + 1) % featuredPackages.length,
     );
 
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
@@ -72,8 +76,6 @@ export function FeaturedJourneys() {
       aria-labelledby="featured-journeys-title"
       tabIndex={0}
       onKeyDown={handleKeyDown}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsFocused(true)}
       onBlur={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -92,9 +94,7 @@ export function FeaturedJourneys() {
 
       <div className="relative mx-auto max-w-7xl">
         <div className="featured-heading max-w-2xl">
-          <p className="featured-eyebrow text-amber-700!">
-            Featured journey
-          </p>
+          <p className="featured-eyebrow text-amber-700!">Featured journey</p>
 
           <h2
             id="featured-journeys-title"
@@ -109,17 +109,18 @@ export function FeaturedJourneys() {
           </p>
         </div>
 
-        <div className="mt-8 grid gap-12 lg:mt-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-16">
+        <div className="mt-4 grid gap-12 lg:mt-4 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-16">
           {/* CONTENT */}
-          <div className="order-2 lg:order-1" aria-live="polite">
+          <div
+            className="order-2 lg:-translate-y-8 lg:order-1"
+            aria-live="polite"
+          >
             <div key={activePackage.id} className="journey-copy">
-              <p className="journey-type text-amber-700!">Pilgrimage</p>
-
-              <h3 className="journey-title font-sans! text-2xl! font-bold! tracking-tight! text-slate-900! md:text-4xl!">
+              <h3 className="journey-title !mb-6 font-sans! text-xl! font-bold! tracking-tight! text-slate-900! md:text-3xl!">
                 {activePackage.name}
               </h3>
 
-              <div className="journey-meta text-slate-600!">
+              <div className="journey-meta flex flex-wrap gap-4 mt-2 text-slate-600!">
                 {activePackage.duration ? (
                   <span>
                     <Clock3 size={16} aria-hidden="true" />{" "}
@@ -140,15 +141,12 @@ export function FeaturedJourneys() {
 
                 <p>
                   <strong>Pickup:</strong> {pickupPreview}
-                  {pickupRemainder > 0
-                    ? ` + ${pickupRemainder} more`
-                    : ""}
+                  {pickupRemainder > 0 ? ` + ${pickupRemainder} more` : ""}
                 </p>
               </div>
 
               <p className="journey-price font-sans! text-slate-900!">
-                <span>From</span>{" "}
-                {activePackage.price ?? "Enquire for price"}
+                <span>From</span> {activePackage.price ?? "Enquire for price"}
               </p>
 
               <div className="journey-actions">
@@ -156,8 +154,7 @@ export function FeaturedJourneys() {
                   href={`/packages/${activePackage.slug}`}
                   className="journey-primary-action"
                 >
-                  Explore Journey{" "}
-                  <ArrowRight size={17} aria-hidden="true" />
+                  Explore Journey <ArrowRight size={17} aria-hidden="true" />
                 </Link>
 
                 <WhatsAppButton
@@ -169,24 +166,24 @@ export function FeaturedJourneys() {
             </div>
 
             <div
-              className="journey-controls"
+              className="journey-controls mt-4"
               aria-label="Journey slider controls"
             >
               <button
                 type="button"
                 onClick={goPrevious}
-                className="journey-arrow"
+                className="journey-arrow text-base md:text-lg"
                 aria-label={`Previous journey, ${previousPackage.name}`}
               >
-                <ArrowLeft size={17} aria-hidden="true" />
+                <ArrowLeft size={24} strokeWidth={2.2} aria-hidden="true" />
                 Previous
               </button>
 
               <span
-                className="journey-counter"
+                className="journey-counter text-base md:text-lg"
                 aria-label={`Slide ${activeIndex + 1} of ${featuredPackages.length}`}
               >
-                <strong>
+                <strong className="text-lg md:text-xl">
                   {String(activeIndex + 1).padStart(2, "0")}
                 </strong>{" "}
                 / {String(featuredPackages.length).padStart(2, "0")}
@@ -195,11 +192,11 @@ export function FeaturedJourneys() {
               <button
                 type="button"
                 onClick={goNext}
-                className="journey-arrow"
+                className="journey-arrow text-base md:text-lg"
                 aria-label={`Next journey, ${nextPackage.name}`}
               >
                 Next
-                <ArrowRight size={17} aria-hidden="true" />
+                <ArrowRight size={24} strokeWidth={2.2} aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -268,7 +265,6 @@ export function FeaturedJourneys() {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );

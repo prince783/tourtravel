@@ -1,11 +1,13 @@
 import Link from "next/link";
 
+import { Reveal } from "@/components/Reveal";
 import { business, packages } from "@/lib/site-data";
 
 export function Footer() {
   return (
-    <footer className="mt-20 border-t border-slate-200 bg-slate-950 text-slate-200">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-2 lg:grid-cols-4 md:px-6">
+    <footer className="mt-2 border-t border-slate-200 bg-slate-950 text-slate-200">
+      <Reveal>
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-2 lg:grid-cols-4 md:px-6">
         <div>
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-400 text-sm font-bold text-slate-900">GS</div>
@@ -47,16 +49,19 @@ export function Footer() {
             <li><a href={business.emailHref}>{business.email}</a></li>
           </ul>
         </div>
-      </div>
-      <div className="border-t border-slate-800">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-5 text-sm text-slate-400 md:flex-row md:items-center md:justify-between md:px-6">
-          <p>© {new Date().getFullYear()} {business.name}. All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link href="/privacy-policy">Privacy Policy</Link>
-            <Link href="/terms">Terms</Link>
+        </div>
+      </Reveal>
+      <Reveal delay={140}>
+        <div className="border-t border-slate-800">
+          <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-5 text-sm text-slate-400 md:flex-row md:items-center md:justify-between md:px-6">
+            <p>© {new Date().getFullYear()} {business.name}. All rights reserved.</p>
+            <div className="flex gap-4">
+              <Link href="/privacy-policy">Privacy Policy</Link>
+              <Link href="/terms">Terms</Link>
+            </div>
           </div>
         </div>
-      </div>
+      </Reveal>
     </footer>
   );
 }

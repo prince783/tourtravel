@@ -29,11 +29,11 @@ export type Destination = {
 export const business = {
   name: "Gauri Shyam Sakshi Travels",
   location: "Yamuna Nagar, Haryana",
-  phone: "+919999999999",
-  phoneDisplay: "+91 99999 99999",
-  phoneHref: "tel:+919999999999",
-  whatsappNumber: "919999999999",
-  whatsappHref: "https://wa.me/919999999999",
+  phone: "+919728986528",
+  phoneDisplay: "+91 97289 86528",
+  phoneHref: "tel:+919728986528",
+  whatsappNumber: "919728986528",
+  whatsappHref: "https://wa.me/919728986528",
   email: "gaurisyam.sakshi@gmail.com",
   emailHref: "mailto:gaurisyam.sakshi@gmail.com",
 };
