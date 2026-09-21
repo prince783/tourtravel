@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 import { Reveal } from "@/components/Reveal";
@@ -36,35 +37,35 @@ const testimonials = [
   },
 ];
 
-const sliderSettings = {
-  arrows: false,
-  autoplay: true,
-  autoplaySpeed: 5000,
-  dots: false,
-  infinite: true,
-  pauseOnHover: false,
-  slidesToScroll: 1,
-  slidesToShow: 3,
-  speed: 700,
-
-  responsive: [
-    {
-      breakpoint: 1100,
-      settings: {
-        slidesToShow: 2,
-      },
-    },
-    {
-      breakpoint: 640,
-      settings: {
-        arrows: false,
-        slidesToShow: 1,
-      },
-    },
-  ],
-};
-
 export function TestimonialsCarousel() {
+  const [viewportWidth, setViewportWidth] = useState<number | null>(null);
+
+  useEffect(() => {
+    const updateViewportWidth = () => setViewportWidth(window.innerWidth);
+
+    updateViewportWidth();
+    window.addEventListener("resize", updateViewportWidth);
+
+    return () => window.removeEventListener("resize", updateViewportWidth);
+  }, []);
+
+  const slidesToShow =
+    viewportWidth === null ? 3 : viewportWidth < 640 ? 1 : viewportWidth < 1024 ? 2 : 3;
+
+  const sliderSettings = {
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    dots: false,
+    dotsClass: "slick-dots !bottom-[-8px]",
+    infinite: true,
+    pauseOnHover: false,
+    slidesToScroll: 1,
+    slidesToShow,
+    speed: 700,
+    swipeToSlide: true,
+  };
+
   return (
     <section className="testimonials-section relative overflow-hidden px-4 py-16 md:px-6 md:py-20">
       <div className="relative mx-auto max-w-7xl">
@@ -107,7 +108,7 @@ export function TestimonialsCarousel() {
 
         {/* Testimonials Slider */}
         <Reveal delay={180}>
-          <Slider {...sliderSettings}>
+          <Slider key={viewportWidth} {...sliderSettings}>
             {testimonials.map((testimonial) => (
               <div key={testimonial.name} className="px-2.5 pb-8">
                 <article className="testimonial-card group relative flex min-h-[310px] flex-col rounded-[26px] border border-slate-200 bg-white p-7 shadow-[0_12px_35px_rgba(15,23,42,0.07)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(15,23,42,0.11)]">
