@@ -21,12 +21,14 @@ export function FeaturedJourneys() {
   const [isFocused, setIsFocused] = useState(false);
 
   const activePackage = featuredPackages[activeIndex];
-  const previousPackage =
-    featuredPackages[
-      (activeIndex - 1 + featuredPackages.length) % featuredPackages.length
-    ];
-  const nextPackage =
-    featuredPackages[(activeIndex + 1) % featuredPackages.length];
+
+  const previousIndex =
+    (activeIndex - 1 + featuredPackages.length) % featuredPackages.length;
+
+  const nextIndex = (activeIndex + 1) % featuredPackages.length;
+
+  const previousPackage = featuredPackages[previousIndex];
+  const nextPackage = featuredPackages[nextIndex];
 
   const isPaused = isFocused;
 
@@ -54,6 +56,11 @@ export function FeaturedJourneys() {
     setActiveIndex(
       (currentIndex) => (currentIndex + 1) % featuredPackages.length,
     );
+
+  // Click any preview image to make it the main image.
+  const goToSlide = (index: number) => {
+    setActiveIndex(index);
+  };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === "ArrowLeft") {
@@ -87,6 +94,7 @@ export function FeaturedJourneys() {
         className="featured-pattern featured-pattern-top"
         aria-hidden="true"
       />
+
       <div
         className="featured-pattern featured-pattern-bottom"
         aria-hidden="true"
@@ -94,7 +102,9 @@ export function FeaturedJourneys() {
 
       <div className="relative mx-auto max-w-7xl">
         <div className="featured-heading mx-auto max-w-2xl text-center">
-          <p className="featured-eyebrow text-amber-700!">Featured journey</p>
+          <p className="featured-eyebrow text-amber-700!">
+            Featured journey
+          </p>
 
           <h2
             id="featured-journeys-title"
@@ -120,7 +130,7 @@ export function FeaturedJourneys() {
                 {activePackage.name}
               </h3>
 
-              <div className="journey-meta flex flex-wrap gap-4 mt-2 text-slate-600!">
+              <div className="journey-meta mt-2 flex flex-wrap gap-4 text-slate-600!">
                 {activePackage.duration ? (
                   <span>
                     <Clock3 size={16} aria-hidden="true" />{" "}
@@ -146,7 +156,8 @@ export function FeaturedJourneys() {
               </div>
 
               <p className="journey-price font-sans! text-slate-900!">
-                <span>From</span> {activePackage.price ?? "Enquire for price"}
+                <span>From</span>{" "}
+                {activePackage.price ?? "Enquire for price"}
               </p>
 
               <div className="journey-actions">
@@ -154,7 +165,8 @@ export function FeaturedJourneys() {
                   href={`/packages/${activePackage.slug}`}
                   className="journey-primary-action"
                 >
-                  Explore Journey <ArrowRight size={17} aria-hidden="true" />
+                  Explore Journey{" "}
+                  <ArrowRight size={17} aria-hidden="true" />
                 </Link>
 
                 <WhatsAppButton
@@ -207,9 +219,11 @@ export function FeaturedJourneys() {
             aria-label={`Images for ${activePackage.name}`}
           >
             {/* MAIN CARD */}
-            <div
-              key={`main-${activePackage.id}`}
-              className="journey-image-main top-[9%]! bottom-[4%]! left-0! right-[59%]! rounded-[22px]! border-2 border-[#fff8ed]!"
+            <button
+              type="button"
+              onClick={() => goToSlide(activeIndex)}
+              aria-label={`Current journey: ${activePackage.name}`}
+              className="journey-image-main top-[9%]! bottom-[4%]! left-0! right-[59%]! cursor-default rounded-[22px]! border-2 border-[#fff8ed]!"
               style={{
                 animation: "none",
                 transform: "none",
@@ -224,12 +238,14 @@ export function FeaturedJourneys() {
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-cover"
               />
-            </div>
+            </button>
 
-            {/* TOP SMALL CARD */}
-            <div
-              key={`previous-${previousPackage.id}`}
-              className="journey-image-small journey-image-small-top top-[29%]! right-[29%]! w-[28%]! aspect-3/4! rounded-[22px]! border-[6px] border-[#fff8ed]!"
+            {/* TOP SMALL CARD - CLICK TO MAKE MAIN */}
+            <button
+              type="button"
+              onClick={() => goToSlide(previousIndex)}
+              aria-label={`Show ${previousPackage.name}`}
+              className="journey-image-small journey-image-small-top top-[29%]! right-[29%]! w-[28%]! aspect-3/4! cursor-pointer rounded-[22px]! border-[6px] border-[#fff8ed]!"
               style={{
                 animation: "none",
                 transform: "none",
@@ -243,12 +259,14 @@ export function FeaturedJourneys() {
                 sizes="220px"
                 className="object-cover"
               />
-            </div>
+            </button>
 
-            {/* RIGHT SMALL CARD */}
-            <div
-              key={`next-${nextPackage.id}`}
-              className="journey-image-small journey-image-small-bottom top-[20%]! right-0! bottom-auto! w-[28%]! aspect-3/4! rounded-[22px]! border-[6px] border-[#fff8ed]!"
+            {/* RIGHT SMALL CARD - CLICK TO MAKE MAIN */}
+            <button
+              type="button"
+              onClick={() => goToSlide(nextIndex)}
+              aria-label={`Show ${nextPackage.name}`}
+              className="journey-image-small journey-image-small-bottom top-[20%]! right-0! bottom-auto! w-[28%]! aspect-3/4! cursor-pointer rounded-[22px]! border-[6px] border-[#fff8ed]!"
               style={{
                 animation: "none",
                 transform: "none",
@@ -262,10 +280,10 @@ export function FeaturedJourneys() {
                 sizes="250px"
                 className="object-cover"
               />
-            </div>
+            </button>
           </div>
         </div>
       </div>
     </section>
   );
-}
+} 

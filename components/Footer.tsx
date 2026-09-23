@@ -61,6 +61,8 @@ export function Footer() {
               <li><Link href="/destinations">Destinations</Link></li>
               <li><Link href="/gallery">Gallery</Link></li>
               <li><Link href="/contact">Contact</Link></li>
+              <li><Link href="/privacy-policy">Privacy Policy</Link></li>
+              <li><Link href="/terms">Terms &amp; Conditions</Link></li>
             </ul>
           </div>
 
@@ -91,7 +93,7 @@ export function Footer() {
             <p>© {new Date().getFullYear()} {business.name}. All rights reserved.</p>
             <div className="flex gap-4">
               <Link href="/privacy-policy">Privacy Policy</Link>
-              <Link href="/terms">Terms</Link>
+              <Link href="/terms">Terms &amp; Conditions</Link>
             </div>
           </div>
         </div>
