@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Headphones, HeartHandshake, ShieldCheck, Sparkles } from "lucide-react";
 
 import { AnimatedStat } from "@/components/AnimatedStat";
+import { BlurText } from "@/components/BlurText";
 import { Navbar } from "@/components/Navbar";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -10,18 +11,29 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main className="about-page relative overflow-hidden bg-stone-50">
+      <main className="about-page relative overflow-hidden bg-stone-50 pt-20 md:pt-16">
         <div className="about-background about-background-top" aria-hidden="true" />
         <div className="about-background about-background-bottom" aria-hidden="true" />
 
         <section className="relative mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-24">
-          <Reveal>
-            <SectionHeading
-              eyebrow="About us"
-              title="Meaningful journeys with thoughtful guidance"
-              description="Gauri Shyam Sakshi Travels is committed to creating spiritually enriching travel experiences rooted in comfort, care and trust."
+          <div className="hero-copy max-w-2xl">
+            <BlurText
+              text="About us"
+              delay={100}
+              className="mb-3 block text-xs font-semibold uppercase tracking-[0.25em] text-amber-700"
             />
-          </Reveal>
+            <h1 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+              <BlurText
+                text="Meaningful journeys with thoughtful guidance"
+                delay={250}
+              />
+            </h1>
+            <BlurText
+              text="Gauri Shyam Sakshi Travels is committed to creating spiritually enriching travel experiences rooted in comfort, care and trust."
+              delay={450}
+              className="mt-4 block text-base text-slate-600 md:text-lg"
+            />
+          </div>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <Reveal direction="left">

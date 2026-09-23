@@ -12,7 +12,7 @@ const testimonials = [
     name: "Rajesh & Priya M.",
     route: "Mumbai · Char Dham",
     time: "2 weeks ago",
-    text: "Char Dham yatra with Gauri Shyam Sakshi Travels was life-changing. Seamless arrangements, comfortable stays, and knowledgeable guides made every moment peaceful.",
+    text: "Char Dham yatra with Gauri Shyam Sakshi Travels was life-changing.comfortable stays, and knowledgeable guides made every moment peaceful.",
   },
   {
     initials: "AK",

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BusFront, Snowflake, Users } from "lucide-react";
 
+import { BlurText } from "@/components/BlurText";
 import { Navbar } from "@/components/Navbar";
 import { Reveal } from "@/components/Reveal";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -40,16 +41,23 @@ export default function TempoTravellersPage() {
           <div className="absolute -right-24 -top-32 h-96 w-96 rounded-full border border-amber-300/20" aria-hidden="true" />
           <div className="absolute -bottom-48 left-1/4 h-96 w-96 rounded-full border border-emerald-300/10" aria-hidden="true" />
           <div className="relative mx-auto max-w-7xl">
-            <Reveal>
-              <div className="max-w-3xl">
+            <div className="hero-copy max-w-3xl">
                 <div className="flex items-center gap-3 text-amber-300">
                   <BusFront size={22} aria-hidden="true" />
-                  <p className="text-xs font-semibold uppercase tracking-[0.28em]">Travel together</p>
+                  <BlurText
+                    text="Travel together"
+                    delay={100}
+                    className="text-xs font-semibold uppercase tracking-[0.28em]"
+                  />
                 </div>
-                <h1 className="mt-5 text-4xl font-black tracking-tight md:text-6xl">Tempo Travellers for every group journey.</h1>
-                <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-                  Choose the right size for your family, friends or pilgrimage group. Contact us for current availability, route planning and a personalised quote.
-                </p>
+                <h1 className="mt-5 text-4xl font-black tracking-tight md:text-6xl">
+                  <BlurText text="Tempo Travellers for every group journey." delay={250} />
+                </h1>
+                <BlurText
+                  text="Choose the right size for your family, friends or pilgrimage group. Contact us for current availability, route planning and a personalised quote."
+                  delay={450}
+                  className="mt-5 block max-w-2xl text-lg leading-8 text-slate-300 md:text-xl"
+                />
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <a
                     href="#available-vehicles"
@@ -59,8 +67,7 @@ export default function TempoTravellersPage() {
                   </a>
                   <WhatsAppButton label="Check availability" className="border-emerald-400 bg-emerald-500 hover:bg-emerald-400" message="Hello, I would like to check Tempo Traveller availability and pricing." />
                 </div>
-              </div>
-            </Reveal>
+            </div>
           </div>
         </section>
 

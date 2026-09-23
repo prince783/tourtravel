@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { BusFront } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, BusFront, CalendarDays, ChevronDown, Headphones, MapPin, Phone, ShieldCheck, Sparkles, User, Users } from "lucide-react";
+import { type FormEvent, useState } from "react";
 
 import { BlurText } from "@/components/BlurText";
 import { CallButton } from "@/components/CallButton";
@@ -14,15 +14,87 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { YatraCalendar } from "@/components/YatraCalendar";
-import { destinations } from "@/lib/site-data";
+import { business, destinations } from "@/lib/site-data";
+
+const WHATSAPP_BUSINESS_NUMBER = business.whatsappNumber;
 
 export default function Home() {
   const [selectedDestination, setSelectedDestination] = useState(destinations[0]);
+  const [openFaq, setOpenFaq] = useState(0);
+  const [isBookingLoading, setIsBookingLoading] = useState(false);
+
+  const handleBookingSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const name = String(formData.get("name") ?? "").trim();
+    const phone = String(formData.get("phone") ?? "").trim();
+    const destination = String(formData.get("destination") ?? "").trim();
+    const travelDate = String(formData.get("travelDate") ?? "").trim();
+    const travelers = String(formData.get("travelers") ?? "").trim();
+
+    if (!name || !phone || !destination || !travelDate || !travelers) {
+      form.reportValidity();
+      return;
+    }
+
+    setIsBookingLoading(true);
+
+    const message = [
+      "Hello Gauri Shyam Sakshi Travels,",
+      "",
+      "I would like to book a pilgrimage journey.",
+      "",
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Destination: ${destination}`,
+      `Travel Date: ${travelDate}`,
+      `Travelers: ${travelers}`,
+      "",
+      "Please share the available packages and details.",
+      "",
+      "Thank you.",
+    ].join("\n");
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_BUSINESS_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+    window.setTimeout(() => setIsBookingLoading(false), 700);
+  };
+
+  const faqItems = [
+    {
+      question: "Which pilgrimage destinations do you cover?",
+      answer:
+        "We offer a wide range of sacred and spiritual journeys including major yatra routes, temple circuit tours, family pilgrimage packages and curated group travel experiences across India.",
+    },
+    {
+      question: "Can I customize a package for my family or group?",
+      answer:
+        "Absolutely. We can tailor trip dates, accommodation, vehicle type and route preferences to match your comfort level, group size and travel schedule.",
+    },
+    {
+      question: "Do you provide Tempo Traveller for group travel?",
+      answer:
+        "Yes. Our Tempo Traveller options are designed for comfortable pilgrimage and family travel, with seating choices suited to small and medium group journeys.",
+    },
+    {
+      question: "How do I book my tour with Gauri Shyam Sakshi Travels?",
+      answer:
+        "You can contact us directly via WhatsApp, phone or the enquiry form on our website. We will guide you through package options, pricing and trip planning.",
+    },
+    {
+      question: "Do you help with travel planning for long-distance yatras?",
+      answer:
+        "Yes. We help travellers plan important details such as route suggestions, suitable travel timings, comfort planning and support throughout the journey.",
+    },
+  ];
 
   return (
     <>
       <Navbar />
-      <main className="bg-stone-50 text-slate-900">
+      <main className="bg-stone-50 text-slate-900 pt-20 md:pt-28">
         <section className="relative isolate overflow-hidden">
           <div className="absolute inset-0">
             <video
@@ -38,21 +110,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-slate-950/45" />
           </div>
 
-          <div className="tempo-badge-wrap absolute right-4 top-4 z-20 md:right-6 md:top-6">
-            <Link
-              href="/tempo-travellers"
-              className="tempo-badge group"
-              aria-label="Check available Tempo Traveller options"
-            >
-              <BusFront aria-hidden="true" size={17} strokeWidth={2.2} />
-              <span>Check Tempo Traveller</span>
-              <span aria-hidden="true" className="tempo-badge-arrow">
-                &rarr;
-              </span>
-            </Link>
-          </div>
-
-          <div className="relative mx-auto flex min-h-170 max-w-7xl items-center px-4 py-24 md:px-6">
+          <div className="relative mx-auto grid min-h-170 max-w-7xl items-center gap-12 px-4 py-20 md:px-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,0.85fr)] lg:gap-10 lg:py-24">
             <div className="hero-copy max-w-2xl text-white">
               <BlurText
                 text="Premium Pilgrimage Tours"
@@ -83,6 +141,49 @@ export default function Home() {
                 />
                 <CallButton />
               </div>
+            </div>
+
+            <div className="hero-booking-card isolate w-full max-w-[420px] justify-self-center rounded-[26px] border border-white/25 bg-white/[0.13] p-5 text-white shadow-[0_24px_80px_rgba(2,6,23,0.3)] backdrop-blur-xl sm:p-6 lg:justify-self-end">
+              <div className="absolute inset-0 z-0 rounded-[26px] bg-[linear-gradient(145deg,rgba(255,255,255,0.16),transparent_45%,rgba(251,191,36,0.1))]" aria-hidden="true" />
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-amber-200">Start planning</p>
+                <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Book Your Journey</h2>
+                <p className="mt-2 text-sm text-slate-200">Plan your pilgrimage with us</p>
+              </div>
+
+              <form className="relative z-10 mt-5 space-y-3" onSubmit={handleBookingSubmit}>
+                <label className="booking-field">
+                  <span className="sr-only">Name</span>
+                  <User size={17} aria-hidden="true" />
+                  <input name="name" type="text" placeholder="Your name" autoComplete="name" required />
+                </label>
+                <label className="booking-field">
+                  <span className="sr-only">Phone Number</span>
+                  <Phone size={17} aria-hidden="true" />
+                  <input name="phone" type="tel" placeholder="Phone number" autoComplete="tel" required />
+                </label>
+                <label className="booking-field">
+                  <span className="sr-only">Destination</span>
+                  <MapPin size={17} aria-hidden="true" />
+                  <input name="destination" type="text" placeholder="Preferred destination" required />
+                </label>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <label className="booking-field">
+                    <span className="sr-only">Travel Date</span>
+                    <CalendarDays size={17} aria-hidden="true" />
+                    <input name="travelDate" type="date" aria-label="Travel date" required />
+                  </label>
+                  <label className="booking-field">
+                    <span className="sr-only">Number of Travelers</span>
+                    <Users size={17} aria-hidden="true" />
+                    <input name="travelers" type="number" min="1" placeholder="Travelers" aria-label="Number of travelers" required />
+                  </label>
+                </div>
+                <button type="submit" disabled={isBookingLoading} className="mt-2 inline-flex w-full items-center justify-center rounded-xl bg-amber-400 px-5 py-3.5 font-semibold text-slate-950 shadow-[0_10px_24px_rgba(251,191,36,0.22)] transition hover:-translate-y-0.5 hover:bg-amber-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-200 disabled:cursor-wait disabled:opacity-75">
+                  {isBookingLoading ? "Preparing WhatsApp..." : "Continue on WhatsApp"}
+                </button>
+              </form>
+              <p className="mt-4 text-center text-xs text-slate-200/85">Quick response <span aria-hidden="true">•</span> Trusted travel support</p>
             </div>
           </div>
         </section>
@@ -132,6 +233,122 @@ export default function Home() {
 
         <FeaturedJourneys />
 
+        <section className="relative overflow-hidden bg-[#fffaf2] px-4 py-16 md:px-6 md:py-20">
+          <div className="mx-auto max-w-7xl">
+            <Reveal>
+              <div className="mx-auto max-w-2xl text-center">
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-700">
+                  Group travel made easy
+                </p>
+                <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+                  Tempo Traveller for every sacred journey
+                </h2>
+                <p className="mt-4 text-base text-slate-600 md:text-lg">
+                  Spacious, dependable and comfortable travel for pilgrimage groups, family outings and multi-stop spiritual trips across India.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="mt-10 grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+              <Reveal direction="left">
+                <div className="max-w-xl">
+                  <p className="text-lg leading-8 text-slate-600">
+                    For family yatras and spiritual group travel, comfort and planning matter just as much as the destination itself.
+                  </p>
+
+                  <div className="mt-6 space-y-4">
+                    {[
+                      { icon: Users, text: "Comfortable seating for family and group travel" },
+                      { icon: ShieldCheck, text: "Well-planned support for longer pilgrimage routes" },
+                    ].map(({ icon: Icon, text }) => (
+                      <div key={text} className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_12px_30px_rgba(15,23,42,0.04)]">
+                        <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700">
+                          <Icon size={18} strokeWidth={2.2} aria-hidden="true" />
+                        </span>
+                        <p className="text-sm font-medium text-slate-700 md:text-base">{text}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                    <Link
+                      href="/tempo-travellers"
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 font-semibold text-white transition hover:bg-slate-800"
+                    >
+                      View options <ArrowRight size={17} aria-hidden="true" />
+                    </Link>
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-900 transition hover:bg-slate-100"
+                    >
+                      Request quote
+                    </Link>
+                  </div>
+                </div>
+              </Reveal>
+
+              <Reveal direction="right" delay={140}>
+                <div className="relative overflow-hidden rounded-[32px] border border-slate-200 bg-slate-900 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.12)] md:p-7">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(251,191,36,0.18),_transparent_35%)]" aria-hidden="true" />
+
+                  <div className="relative flex items-center justify-between gap-3">
+                    <div>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-amber-300">
+                        Reliable travel
+                      </p>
+                      <h3 className="mt-2 text-2xl font-bold text-white md:text-3xl">
+                        Group comfort, first
+                      </h3>
+                    </div>
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-400/15 text-amber-300 ring-1 ring-amber-200/20">
+                      <BusFront size={22} aria-hidden="true" />
+                    </span>
+                  </div>
+
+                  <div className="relative mt-8 grid gap-4 sm:grid-cols-3">
+                    {[
+                      { label: "12 Seater", value: "Ideal for families" },
+                      { label: "16 Seater", value: "Balanced & roomy" },
+                      { label: "18 Seater", value: "Best for groups" },
+                    ].map((item) => (
+                      <div key={item.label} className="rounded-[22px] border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">
+                          {item.label}
+                        </p>
+                        <p className="mt-3 text-sm font-medium text-white/90">{item.value}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="relative mt-7 rounded-[26px] border border-amber-100/15 bg-white/5 p-4 md:p-5">
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-300">Best for</p>
+                        <p className="mt-2 text-xl font-bold text-white">Pilgrimage groups</p>
+                      </div>
+                      <div className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-300">
+                        Ready
+                      </div>
+                    </div>
+
+                    <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                      {[
+                        "AC comfort",
+                        "Luggage support",
+                        "Family seating",
+                      ].map((feature) => (
+                        <span key={feature} className="rounded-full border border-white/10 bg-slate-950/40 px-3 py-2 text-center text-xs font-medium text-slate-200">
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
 <section className="destination-showcase relative overflow-hidden px-4 py-16 md:px-6 md:py-20">        
     <div className="relative mx-auto max-w-7xl">
             <Reveal>
@@ -180,21 +397,21 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-[#f3eedf] px-4 py-16 md:px-6 md:py-20">
+        <section className="relative overflow-hidden bg-stone-50 px-4 py-16 md:px-6 md:py-20">
           <div className="mx-auto max-w-6xl">
-            <div className="text-left md:text-center">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#9a5d3c]">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-700">
                 Sacred moments
               </p>
-              <h2 className="mt-3 text-4xl font-black tracking-tight text-[#5d1d29] md:text-6xl">
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
                 Gallery
               </h2>
-              <p className="mt-4 text-base text-slate-700 md:text-lg">
+              <p className="mt-4 text-base text-slate-600 md:text-lg">
                 Glimpses from our pilgrimage destinations across India.
               </p>
             </div>
 
-            <div className="mt-8 flex flex-wrap justify-start gap-3 md:justify-center">
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               {destinations.map((destination, index) => (
                 <button
                   key={destination.slug}
@@ -202,8 +419,8 @@ export default function Home() {
                   aria-pressed={selectedDestination.slug === destination.slug}
                   onClick={() => setSelectedDestination(destination)}
                   className={[
-                    "cursor-pointer rounded-full border border-[#7a4d3d]/25 bg-white/40 px-4 py-2 text-sm font-medium text-[#5d1d29] shadow-sm transition hover:-translate-y-0.5 hover:bg-white",
-                    selectedDestination.slug === destination.slug ? "bg-[#681e2a] text-white shadow-[0_10px_20px_rgba(104,30,42,0.2)]" : "",
+                    "cursor-pointer rounded-full border border-slate-300 bg-orange-200 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100",
+                    selectedDestination.slug === destination.slug ? "border-slate-900 bg-slate-900 text-white shadow-[0_10px_20px_rgba(15,23,42,0.18)]" : "",
                     index === 0 ? "" : "",
                   ].join(" ")}
                 >
@@ -212,8 +429,8 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="mt-10 flex justify-start">
-              <div className="relative w-full max-w-[420px] overflow-hidden rounded-[28px] border border-[#d7cab6] bg-white p-2 shadow-[0_20px_40px_rgba(43,28,18,0.12)]">
+            <div className="mt-10 flex justify-center">
+              <div className="relative w-full max-w-[420px] overflow-hidden rounded-[28px] border border-slate-200 bg-white p-2 shadow-[0_20px_40px_rgba(15,23,42,0.08)]">
                 <Image
                   src={selectedDestination.image}
                   alt={selectedDestination.name}
@@ -297,6 +514,139 @@ export default function Home() {
         <YatraCalendar />
 
         <TestimonialsCarousel />
+
+        <section className="relative overflow-hidden px-4 py-16 md:px-6 md:py-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.12),_transparent_30%),linear-gradient(180deg,rgba(255,255,255,0.2),rgba(255,247,237,0.55))]" aria-hidden="true" />
+
+          <div className="relative mx-auto max-w-6xl">
+            <Reveal>
+              <div className="mx-auto max-w-2xl text-center">
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-700">
+                  Frequently asked questions
+                </p>
+                <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+                  Everything you need to know before booking
+                </h2>
+                <p className="mt-4 text-base text-slate-600 md:text-lg">
+                  Clear answers for a smoother, more comfortable pilgrimage planning experience.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="mt-10 grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+              <Reveal direction="left" className="hidden lg:block">
+                <div className="faq-visual rounded-[32px] border border-amber-200/80 bg-gradient-to-br from-amber-50 via-white to-orange-50 p-6 shadow-[0_30px_60px_rgba(120,53,15,0.08)]">
+                  <div className="rounded-[26px] bg-slate-900 p-6 text-white shadow-[0_25px_45px_rgba(15,23,42,0.18)]">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-amber-300">
+                      Travel support
+                    </p>
+                    <h3 className="mt-3 text-2xl font-bold">Need a custom itinerary?</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-300">
+                      Our team helps plan comfortable journeys with personal attention, transparent guidance and stress-free travel support.
+                    </p>
+
+                    <div className="mt-6 space-y-3">
+                      {[
+                        "Personalized trip guidance",
+                        "Group travel planning",
+                        "Comfort-first itinerary support",
+                      ].map((item) => (
+                        <div key={item} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5">
+                          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-amber-400 text-xs font-bold text-slate-900">
+                            ✓
+                          </span>
+                          <span className="text-sm text-slate-100">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+
+              <div className="space-y-4">
+                {faqItems.map((item, index) => {
+                  const isOpen = openFaq === index;
+
+                  return (
+                    <Reveal key={item.question} delay={index * 80}>
+                      <div className={`faq-item rounded-[28px] border ${isOpen ? "border-amber-300 bg-white shadow-[0_20px_40px_rgba(15,23,42,0.06)]" : "border-slate-200 bg-white/80 shadow-[0_10px_25px_rgba(15,23,42,0.025)]"}`}>
+                        <button
+                          type="button"
+                          onClick={() => setOpenFaq(isOpen ? -1 : index)}
+                          className="faq-question flex w-full items-center justify-between gap-4 px-5 py-5 text-left md:px-6"
+                          aria-expanded={isOpen}
+                        >
+                          <span className="text-base font-semibold text-slate-900 md:text-lg">
+                            {item.question}
+                          </span>
+                          <span
+                            className={`faq-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${isOpen ? "border-amber-300 bg-amber-100 text-amber-700" : "border-slate-200 bg-slate-50 text-slate-700"}`}
+                          >
+                            <ChevronDown size={18} className={isOpen ? "rotate-180" : "rotate-0"} />
+                          </span>
+                        </button>
+
+                        <div
+                          className="faq-answer-wrapper grid transition-all duration-500 ease-out"
+                          style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="px-5 pb-5 pt-0 text-sm leading-7 text-slate-600 md:px-6 md:text-base">
+                              {item.answer}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative overflow-hidden bg-stone-50 px-4 py-16 md:px-6 md:py-20">
+          <div className="relative mx-auto max-w-7xl">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Why choose us"
+                title="Travel with confidence and care"
+                description="We combine thoughtful planning with personal support so your pilgrimage feels safe, smooth and spiritually fulfilling."
+                align="center"
+              />
+            </Reveal>
+
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  icon: ShieldCheck,
+                  title: "Safe & comfortable",
+                  text: "We prioritise your safety and comfort with reliable arrangements, experienced guidance and well-planned itineraries for every yatra.",
+                },
+                {
+                  icon: Sparkles,
+                  title: "Curated experiences",
+                  text: "From Char Dham to Kashi Ayodhya, each journey is thoughtfully designed to honour tradition while creating smooth, memorable experiences.",
+                },
+                {
+                  icon: Headphones,
+                  title: "Personal support",
+                  text: "Our team stays available before, during and after your pilgrimage, helping you travel with clarity and confidence.",
+                },
+              ].map(({ icon: Icon, title, text }, index) => (
+                <Reveal key={title} delay={index * 120}>
+                  <article className="about-value-card h-full rounded-[28px] bg-slate-900 p-7 text-white shadow-[0_18px_50px_rgba(15,23,42,0.12)]">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-400/15 text-amber-300">
+                      <Icon size={23} strokeWidth={2} aria-hidden="true" />
+                    </div>
+                    <h3 className="mt-6 text-xl font-bold">{title}</h3>
+                    <p className="mt-3 leading-7 text-slate-300">{text}</p>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <section className="mx-auto max-w-7xl px-4 pt-2 pb-3 md:px-6">
           <Reveal direction="right">

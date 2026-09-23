@@ -12,6 +12,7 @@ const navItems = [
   { label: "About", href: "/about" },
   { label: "Packages", href: "/packages" },
   { label: "Destinations", href: "/destinations" },
+  { label: "Tempo", href: "/tempo-travellers" },
   { label: "Services", href: "/services" },
   { label: "Gallery", href: "/gallery" },
   { label: "Videos", href: "/videos" },
@@ -61,25 +62,25 @@ export function Navbar() {
           </div>
         </Link>
 
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm font-medium text-slate-700 hover:text-slate-900">
-              {item.label}
+            <Link key={item.href} href={item.href} className="nav-link group relative inline-flex items-center px-2.5 py-2 text-sm font-semibold tracking-[0.02em] text-slate-700">
+              <span className="nav-link-label relative z-10">{item.label}</span>
             </Link>
           ))}
         </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <Link href={`https://wa.me/${business.whatsappNumber}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-emerald-600 px-4 py-2 text-sm font-medium text-emerald-700 transition hover:bg-emerald-50">
+        <div className="hidden shrink-0 items-center gap-2 lg:flex">
+          <Link href={`https://wa.me/${business.whatsappNumber}`} target="_blank" rel="noreferrer" className="wa-nav-button inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-white transition">
             <MessageCircle size={16} /> WhatsApp
           </Link>
-          <Link href={business.phoneHref} className="inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-amber-300">
+          <Link href={business.phoneHref} className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-amber-400 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-amber-300">
             <Phone size={16} /> Call Now
           </Link>
         </div>
 
         <div className="flex items-center gap-3 lg:hidden">
-          <Link href={`https://wa.me/${business.whatsappNumber}`} target="_blank" rel="noreferrer" className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-white shadow-sm">
+          <Link href={`https://wa.me/${business.whatsappNumber}`} target="_blank" rel="noreferrer" className="wa-nav-button inline-flex h-10 w-10 items-center justify-center rounded-full text-white shadow-sm">
             <MessageCircle size={18} />
           </Link>
           <button

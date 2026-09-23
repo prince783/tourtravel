@@ -93,7 +93,7 @@ export function FeaturedJourneys() {
       />
 
       <div className="relative mx-auto max-w-7xl">
-        <div className="featured-heading max-w-2xl">
+        <div className="featured-heading mx-auto max-w-2xl text-center">
           <p className="featured-eyebrow text-amber-700!">Featured journey</p>
 
           <h2

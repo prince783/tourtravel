@@ -23,7 +23,7 @@ export function WhatsAppButton({
       target="_blank"
       rel="noreferrer"
       className={[
-        "inline-flex items-center justify-center gap-2 rounded-full border border-emerald-500 bg-emerald-500 px-5 py-3 font-medium text-white shadow-sm transition hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2",
+        "wa-button inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-medium text-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2",
         compact ? "px-4 py-2 text-sm" : "",
         className,
       ].join(" ")}

@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { BlurText } from "@/components/BlurText";
 import { Navbar } from "@/components/Navbar";
 import { Reveal } from "@/components/Reveal";
-import { SectionHeading } from "@/components/SectionHeading";
 
 const videoCards = [
   { title: "Temple Tour Reel", src: "/videos/templetours.mp4" },
@@ -43,18 +43,26 @@ export default function VideosPage() {
   return (
     <>
       <Navbar />
-      <main className="about-page relative overflow-hidden bg-stone-50 px-4 py-16 md:px-6">
+      <main className="about-page relative overflow-hidden bg-stone-50 px-4 pt-24 pb-16 md:px-6 md:pt-36">
         <div className="about-background about-background-top" aria-hidden="true" />
         <div className="about-background about-background-bottom" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-7xl">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Videos"
-              title="Travel moments and guided reels"
-              description="Client-uploaded video content can be added here with responsive previews and lightbox playback when ready."
+          <div className="hero-copy max-w-2xl">
+            <BlurText
+              text="Videos"
+              delay={100}
+              className="mb-3 block text-xs font-semibold uppercase tracking-[0.25em] text-amber-700"
             />
-          </Reveal>
+            <h1 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+              <BlurText text="Travel moments and guided reels" delay={250} />
+            </h1>
+            <BlurText
+              text="Client-uploaded video content can be added here with responsive previews and lightbox playback when ready."
+              delay={450}
+              className="mt-4 block text-base text-slate-600 md:text-lg"
+            />
+          </div>
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {videoCards.map((video, index) => (
