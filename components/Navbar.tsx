@@ -62,7 +62,7 @@ export function Navbar() {
           </div>
         </Link>
 
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center gap-1.5 lg:-ml-4 lg:flex">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} className="nav-link group relative inline-flex items-center px-2.5 py-2 text-sm font-semibold tracking-[0.02em] text-slate-700">
               <span className="nav-link-label relative z-10">{item.label}</span>
@@ -94,7 +94,7 @@ export function Navbar() {
         </div>
       </nav>
 
-      <div className="border-t border-slate-200/70 bg-white/70 backdrop-blur-sm">
+      <div className="transport-divider bg-[#09090b]">
         <div className="mx-auto max-w-7xl overflow-hidden px-2 py-1.5">
           <div className="transport-navbar-track" aria-hidden="true">
             <svg
@@ -108,12 +108,13 @@ export function Navbar() {
             >
               <defs>
                 <linearGradient id="vehicleBody" x1="0%" x2="100%" y1="0%" y2="0%">
-                  <stop offset="0%" stopColor="#ffffff" />
-                  <stop offset="100%" stopColor="#f0f4f8" />
+                  <stop offset="0%" stopColor="#facc15" />
+                  <stop offset="65%" stopColor="#fde68a" />
+                  <stop offset="100%" stopColor="#ffffff" />
                 </linearGradient>
                 <linearGradient id="vehicleGlass" x1="0%" x2="100%" y1="0%" y2="0%">
-                  <stop offset="0%" stopColor="#dfeaf6" />
-                  <stop offset="100%" stopColor="#bfd4ea" />
+                  <stop offset="0%" stopColor="#ffffff" />
+                  <stop offset="100%" stopColor="#f8fafc" />
                 </linearGradient>
               </defs>
 

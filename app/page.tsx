@@ -14,12 +14,12 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { YatraCalendar } from "@/components/YatraCalendar";
-import { business, destinations } from "@/lib/site-data";
+import { business, destinations, galleryGroups } from "@/lib/site-data";
 
 const WHATSAPP_BUSINESS_NUMBER = business.whatsappNumber;
 
 export default function Home() {
-  const [selectedDestination, setSelectedDestination] = useState(destinations[0]);
+  const [selectedGalleryGroup, setSelectedGalleryGroup] = useState(galleryGroups[0]);
   const [openFaq, setOpenFaq] = useState(0);
   const [isBookingLoading, setIsBookingLoading] = useState(false);
 
@@ -95,7 +95,7 @@ export default function Home() {
     <>
       <Navbar />
       <main className="bg-stone-50 text-slate-900 pt-20 md:pt-28">
-        <section className="relative isolate overflow-hidden">
+        <section className="home-section-motion relative isolate overflow-hidden">
           <div className="absolute inset-0">
             <video
               autoPlay
@@ -107,7 +107,7 @@ export default function Home() {
             >
               <source src="/HeroVideo/tourvideo.mp4" type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-slate-950/45" />
+            <div className="home-hero-overlay absolute inset-0 bg-slate-950/45" />
           </div>
 
           <div className="relative mx-auto grid min-h-170 max-w-7xl items-center gap-12 px-4 py-20 md:px-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,0.85fr)] lg:gap-10 lg:py-24">
@@ -188,7 +188,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="about-page relative overflow-hidden bg-stone-50 px-4 pt-10 pb-5 md:px-6">
+        <section className="home-section-motion about-page relative overflow-hidden bg-stone-50 px-4 pt-10 pb-5 md:px-6">
           <div className="about-background about-background-top" aria-hidden="true" />
           <div className="about-background about-background-bottom" aria-hidden="true" />
 
@@ -233,7 +233,7 @@ export default function Home() {
 
         <FeaturedJourneys />
 
-        <section className="relative overflow-hidden bg-[#fffaf2] px-4 py-16 md:px-6 md:py-20">
+        <section className="home-section-motion relative overflow-hidden bg-[#fffaf2] px-4 py-16 md:px-6 md:py-20">
           <div className="mx-auto max-w-7xl">
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
@@ -349,7 +349,7 @@ export default function Home() {
           </div>
         </section>
 
-<section className="destination-showcase relative overflow-hidden px-4 py-16 md:px-6 md:py-20">        
+<section className="home-section-motion destination-showcase relative overflow-hidden px-4 py-16 md:px-6 md:py-20">        
     <div className="relative mx-auto max-w-7xl">
             <Reveal>
               <SectionHeading
@@ -397,7 +397,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-stone-50 px-4 py-16 md:px-6 md:py-20">
+        <section className="home-section-motion relative overflow-hidden bg-stone-50 px-4 py-16 md:px-6 md:py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-2xl text-center">
               <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-700">
@@ -412,38 +412,39 @@ export default function Home() {
             </div>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              {destinations.map((destination, index) => (
+              {galleryGroups.map((group) => (
                 <button
-                  key={destination.slug}
+                  key={group.slug}
                   type="button"
-                  aria-pressed={selectedDestination.slug === destination.slug}
-                  onClick={() => setSelectedDestination(destination)}
+                  aria-pressed={selectedGalleryGroup.slug === group.slug}
+                  onClick={() => setSelectedGalleryGroup(group)}
                   className={[
                     "cursor-pointer rounded-full border border-slate-300 bg-orange-200 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100",
-                    selectedDestination.slug === destination.slug ? "border-slate-900 bg-slate-900 text-white shadow-[0_10px_20px_rgba(15,23,42,0.18)]" : "",
-                    index === 0 ? "" : "",
+                    selectedGalleryGroup.slug === group.slug ? "border-slate-900 bg-slate-900 text-white shadow-[0_10px_20px_rgba(15,23,42,0.18)]" : "",
                   ].join(" ")}
                 >
-                  {destination.name}
+                  {group.name}
                 </button>
               ))}
             </div>
 
-            <div className="mt-10 flex justify-center">
-              <div className="relative w-full max-w-[420px] overflow-hidden rounded-[28px] border border-slate-200 bg-white p-2 shadow-[0_20px_40px_rgba(15,23,42,0.08)]">
-                <Image
-                  src={selectedDestination.image}
-                  alt={selectedDestination.name}
-                  width={900}
-                  height={680}
-                  className="h-[320px] w-full rounded-[22px] object-cover"
-                />
-              </div>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {selectedGalleryGroup.images.slice(0, 3).map((image) => (
+                <div key={image.src} className="relative aspect-4/3 overflow-hidden rounded-[22px] border border-slate-200 bg-white p-2 shadow-[0_20px_40px_rgba(15,23,42,0.08)]">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="rounded-[16px] object-cover"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="relative overflow-hidden px-4 py-16 md:px-6 md:py-20">
+        <section className="home-section-motion relative overflow-hidden px-4 py-16 md:px-6 md:py-20">
           <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
             <Reveal direction="left" className="mx-auto w-full max-w-md">
               <div className="relative aspect-4/5 overflow-hidden rounded-[28px] border border-white shadow-[0_20px_45px_rgba(15,23,42,0.14)]">
@@ -515,7 +516,7 @@ export default function Home() {
 
         <TestimonialsCarousel />
 
-        <section className="relative overflow-hidden px-4 py-16 md:px-6 md:py-20">
+        <section className="home-section-motion relative overflow-hidden px-4 py-16 md:px-6 md:py-20">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.12),_transparent_30%),linear-gradient(180deg,rgba(255,255,255,0.2),rgba(255,247,237,0.55))]" aria-hidden="true" />
 
           <div className="relative mx-auto max-w-6xl">
@@ -605,7 +606,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-stone-50 px-4 py-16 md:px-6 md:py-20">
+        <section className="home-section-motion relative overflow-hidden bg-stone-50 px-4 py-16 md:px-6 md:py-20">
           <div className="relative mx-auto max-w-7xl">
             <Reveal>
               <SectionHeading
@@ -648,7 +649,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 pt-2 pb-3 md:px-6">
+        <section className="home-section-motion mx-auto max-w-7xl px-4 pt-2 pb-3 md:px-6">
           <Reveal direction="right">
             <div className="cta-panel rounded-4xl bg-slate-900 px-6 py-10 text-white md:px-10 md:py-14">
               <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">

@@ -477,14 +477,20 @@ img {
   width: 100%;
   min-height: 1.75rem;
   overflow: hidden;
-  border: 1px solid rgba(93, 29, 41, 0.12);
-  border-radius: 999px;
-  background: rgba(255, 248, 237, 0.75);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0.35rem;
+  background-color: #09090b;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -2px 0 rgba(250, 204, 21, 0.28);
+}
+
+.transport-divider {
+  border-top: 2px solid rgba(250, 204, 21, 0.95);
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.75);
 }
 
 .transport-navbar-track::before,
 .transport-navbar-track::after {
+  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -495,12 +501,12 @@ img {
 
 .transport-navbar-track::before {
   left: 0;
-  background: linear-gradient(90deg, rgba(255, 248, 237, 1), rgba(255, 248, 237, 0));
+  background: linear-gradient(90deg, #09090b, rgba(9, 9, 11, 0));
 }
 
 .transport-navbar-track::after {
   right: 0;
-  background: linear-gradient(270deg, rgba(255, 248, 237, 1), rgba(255, 248, 237, 0));
+  background: linear-gradient(270deg, #09090b, rgba(9, 9, 11, 0));
 }
 
 .travel-vehicle {
@@ -598,6 +604,19 @@ img {
 
 .about-page {
   isolation: isolate;
+}
+
+.home-section-motion {
+  background-image: radial-gradient(circle at 12% 18%, rgba(251, 191, 36, 0.12), transparent 24rem), radial-gradient(circle at 88% 76%, rgba(112, 42, 48, 0.08), transparent 28rem), linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.28) 48%, transparent 100%);
+  background-position: 0 0, 100% 100%, -20% 0;
+  background-size: 34rem 34rem, 38rem 38rem, 180% 100%;
+  animation: sectionAtmosphere 18s ease-in-out infinite alternate;
+}
+
+.home-hero-overlay {
+  background-image: linear-gradient(115deg, rgba(15, 23, 42, 0.58), rgba(15, 23, 42, 0.36), rgba(120, 53, 15, 0.22));
+  background-size: 180% 100%;
+  animation: heroAtmosphere 16s ease-in-out infinite alternate;
 }
 
 .about-page::before {
@@ -1183,6 +1202,16 @@ img {
   50% { transform: translate(1rem, 0.8rem) rotate(8deg); }
 }
 
+@keyframes sectionAtmosphere {
+  from { background-position: 0 0, 100% 100%, -20% 0; }
+  to { background-position: 5rem 2rem, calc(100% - 4rem) calc(100% - 2rem), 20% 0; }
+}
+
+@keyframes heroAtmosphere {
+  from { background-position: 0 50%; }
+  to { background-position: 100% 50%; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
@@ -1202,6 +1231,11 @@ img {
 
   .about-background,
   .about-promise::after {
+    animation: none;
+  }
+
+  .home-section-motion,
+  .home-hero-overlay {
     animation: none;
   }
 

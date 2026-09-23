@@ -67,7 +67,7 @@ export function TestimonialsCarousel() {
   };
 
   return (
-    <section className="testimonials-section relative overflow-hidden px-4 py-16 md:px-6 md:py-20">
+    <section className="home-section-motion testimonials-section relative overflow-hidden px-4 py-16 md:px-6 md:py-20">
       <div className="relative mx-auto max-w-7xl">
 
         {/* Section Heading */}

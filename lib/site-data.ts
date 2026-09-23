@@ -429,6 +429,64 @@ export const packages: TourPackage[] = [
   },
 ];
 
+export const galleryGroups = [
+  {
+    slug: "delhi",
+    name: "Delhi",
+    images: [
+      { src: "/packages/delhidarshan.png", alt: "Delhi Darshan" },
+      { src: "/packages/delhi.jpg", alt: "Delhi travel" },
+      { src: "/packages/delhi1.jpg", alt: "Delhi journey" },
+    ],
+  },
+  {
+    slug: "vaishno-devi",
+    name: "Vaishno Devi",
+    images: [
+      { src: "/packages/vaishnodevi.png", alt: "Vaishno Devi" },
+      { src: "/packages/vaishnoma1.png", alt: "Vaishno Devi journey" },
+      { src: "/packages/vaishnoma2.png", alt: "Vaishno Devi travel" },
+    ],
+  },
+  {
+    slug: "badrinath-kedarnath",
+    name: "Badrinath & Kedarnath",
+    images: [
+      { src: "/packages/badrinath.png", alt: "Badrinath" },
+      { src: "/packages/badrinath.jpg", alt: "Badrinath journey" },
+      { src: "/packages/kedharnath.webp", alt: "Kedarnath" },
+    ],
+  },
+  {
+    slug: "ujjain",
+    name: "Ujjain",
+    images: [
+      { src: "/packages/ujjain.jpg", alt: "Ujjain" },
+      { src: "/packages/ujjain3.png", alt: "Ujjain journey" },
+      { src: "/packages/ujjain4.png", alt: "Ujjain pilgrimage" },
+    ],
+  },
+  {
+    slug: "vrindavan",
+    name: "Vrindavan",
+    images: [
+      { src: "/packages/vrindavan.jpg", alt: "Vrindavan" },
+      { src: "/packages/vrindavan.jpeg", alt: "Vrindavan journey" },
+      { src: "/packages/vrindavann.jpg", alt: "Vrindavan travel" },
+    ],
+  },
+  {
+    slug: "khatu-shyam",
+    name: "Khatu Shyam",
+    images: [{ src: "/packages/khatushyam.png", alt: "Khatu Shyam" }],
+  },
+  {
+    slug: "goga-madi",
+    name: "Goga Madi",
+    images: [{ src: "/packages/godamadi.png", alt: "Goga Madi" }],
+  },
+];
+
 export const featuredPackages = packages.filter((pkg) => pkg.featured);
 
 export function getPackageBySlug(slug: string) {

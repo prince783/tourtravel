@@ -22,7 +22,7 @@ export function YatraCalendar() {
   const month = calendarMonths[monthIndex];
 
   return (
-    <section className="yatra-calendar relative overflow-hidden bg-white px-4 py-16 md:px-6 md:py-20">
+    <section className="home-section-motion yatra-calendar relative overflow-hidden bg-white px-4 py-16 md:px-6 md:py-20">
       <div className="relative mx-auto max-w-7xl">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-600">Plan your yatra</p>

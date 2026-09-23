@@ -3,7 +3,7 @@ import Image from "next/image";
 import { BlurText } from "@/components/BlurText";
 import { Navbar } from "@/components/Navbar";
 import { Reveal } from "@/components/Reveal";
-import { packages } from "@/lib/site-data";
+import { galleryGroups } from "@/lib/site-data";
 
 const topGalleryMoments = [
   { src: "/packages/moment1.png", alt: "Travel moment 1" },
@@ -12,8 +12,8 @@ const topGalleryMoments = [
 
 const galleryImages = [
   ...topGalleryMoments,
-  ...packages.map((pkg) => ({ src: pkg.image, alt: pkg.name })),
-  { src: "/packages/delhi.jpg", alt: "Delhi travel" },
+  ...galleryGroups.flatMap((group) => group.images),
+  { src: "/packages/badrinath1.jpg", alt: "Badrinath journey" },
 ];
 
 const galleryLayout = [

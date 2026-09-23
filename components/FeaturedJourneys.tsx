@@ -79,7 +79,7 @@ export function FeaturedJourneys() {
 
   return (
     <section
-      className="featured-journeys relative overflow-hidden bg-stone-50! px-4 py-20 text-slate-900! md:px-6"
+      className="home-section-motion featured-journeys relative overflow-hidden bg-stone-50! px-4 py-20 text-slate-900! md:px-6"
       aria-labelledby="featured-journeys-title"
       tabIndex={0}
       onKeyDown={handleKeyDown}
