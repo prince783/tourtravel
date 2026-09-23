@@ -10,7 +10,7 @@ export default function DestinationsPage() {
   return (
     <>
       <Navbar /> 
-      <main className="about-page relative overflow-hidden px-4 pt-24 pb-16 md:px-6 md:pt-36">
+      <main className="about-page relative overflow-hidden px-4 pt-34 pb-16 md:px-6 md:pt-36">
         <div className="about-background about-background-top" aria-hidden="true" />
         <div className="about-background about-background-bottom" aria-hidden="true" />
 

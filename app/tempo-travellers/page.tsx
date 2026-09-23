@@ -36,7 +36,7 @@ export default function TempoTravellersPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-stone-50 text-slate-900">
+      <main className="bg-stone-50 pt-26 text-slate-900 md:pt-0">
         <section className="relative overflow-hidden bg-slate-900 px-4 py-16 text-white md:px-6 md:py-24">
           <div className="absolute -right-24 -top-32 h-96 w-96 rounded-full border border-amber-300/20" aria-hidden="true" />
           <div className="absolute -bottom-48 left-1/4 h-96 w-96 rounded-full border border-emerald-300/10" aria-hidden="true" />

@@ -28,7 +28,7 @@ export default async function PackageDetailsPage({
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-7xl px-4 py-10 md:px-6">
+      <main className="mx-auto max-w-7xl px-4 pt-36 pb-10 md:px-6 md:pt-36">
         <Reveal>
           <nav className="mb-8 text-sm text-slate-600">
             <div className="flex flex-wrap items-center gap-2">
