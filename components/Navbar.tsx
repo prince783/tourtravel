@@ -50,7 +50,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
         <Link href="/" className="flex items-center" aria-label="Gauri Shyam Sakshi Travels home">
-          <div className="relative h-10 w-[170px] overflow-hidden sm:h-12 sm:w-[220px] md:h-14 md:w-[260px]">
+          <div className="relative h-14 w-[210px] max-w-[calc(100vw-88px)] overflow-hidden sm:h-12 sm:w-[220px] md:h-14 md:w-[260px]">
             <Image
               src="/logo/gauri.png"
               alt="Gauri Shyam Sakshi Travels logo"
@@ -94,7 +94,7 @@ export function Navbar() {
         </div>
       </nav>
 
-      <div className="transport-divider bg-[#09090b]">
+      <div className="transport-divider w-full bg-[#09090b]">
         <div className="mx-auto max-w-7xl overflow-hidden px-2 py-1.5">
           <div className="transport-navbar-track" aria-hidden="true">
             <svg

@@ -116,7 +116,7 @@ export function Footer() {
       </Reveal>
 
       <div className="relative border-t border-slate-800/90 bg-slate-950/80">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-5 text-sm text-slate-400 md:flex-row md:items-center md:justify-between md:px-6">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 pt-5 pb-24 text-sm text-slate-400 md:flex-row md:items-center md:justify-between md:px-6 md:py-5">
           <p>© {new Date().getFullYear()} {business.name}. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-4">
             <Link href="/privacy-policy" className="transition hover:text-white">Privacy Policy</Link>
