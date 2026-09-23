@@ -11,21 +11,21 @@ import { getWhatsAppUrl } from "@/lib/site-data";
 const tempoTravellers = [
   {
     name: "12 Seater Tempo Traveller",
-    image: "/tempo/12%20seater.jpg",
+    image: "/tempo/tempo12.png",
     capacity: "Up to 12 travellers",
     description: "A comfortable choice for small families and groups travelling together on a yatra or weekend tour.",
     features: ["Air-conditioned comfort", "Spacious seating", "Ideal for small groups"],
   },
   {
     name: "16 Seater Tempo Traveller",
-    image: "/tempo/16%20seater.jpg",
+    image: "/tempo/tempo16.png",
     capacity: "Up to 16 travellers",
     description: "Extra room for larger family groups, with comfortable seating for long-distance pilgrimage travel.",
     features: ["Air-conditioned comfort", "Ample luggage space", "Great for group yatras"],
   },
   {
     name: "18 Seater Tempo Traveller",
-    image: "/tempo/18%20seater.jpg",
+    image: "/tempo/tempo18.png",
     capacity: "Up to 18 travellers",
     description: "Our largest Tempo Traveller option for organised group journeys, tours and multi-day trips.",
     features: ["Air-conditioned comfort", "Large group capacity", "Comfortable long-route travel"],

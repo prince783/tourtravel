@@ -6,8 +6,8 @@ import { Reveal } from "@/components/Reveal";
 import { packages } from "@/lib/site-data";
 
 const topGalleryMoments = [
-  { src: "/packages/moment1.jpeg", alt: "Travel moment 1" },
-  { src: "/packages/moment2.jpeg", alt: "Travel moment 2" },
+  { src: "/packages/moment1.png", alt: "Travel moment 1" },
+  { src: "/packages/moment2.png", alt: "Travel moment 2" },
 ];
 
 const galleryImages = [
