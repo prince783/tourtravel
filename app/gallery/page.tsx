@@ -5,10 +5,15 @@ import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { packages } from "@/lib/site-data";
 
+const topGalleryMoments = [
+  { src: "/packages/moment1.jpeg", alt: "Travel moment 1" },
+  { src: "/packages/moment2.jpeg", alt: "Travel moment 2" },
+];
+
 const galleryImages = [
+  ...topGalleryMoments,
   ...packages.map((pkg) => ({ src: pkg.image, alt: pkg.name })),
   { src: "/packages/delhi.jpg", alt: "Delhi travel" },
-  { src: "/packages/kedharnath.webp", alt: "Kedarnath pilgrimage" },
 ];
 
 export default function GalleryPage() {

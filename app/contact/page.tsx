@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Navbar } from "@/components/Navbar";
@@ -16,6 +17,17 @@ export default function ContactPage() {
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <Reveal direction="left">
               <div className="h-full rounded-[28px] bg-slate-900 p-8 text-white shadow-sm">
+                <div className="mb-4 flex justify-center sm:justify-start">
+                  <div className="relative h-16 w-[200px] overflow-hidden ">
+                    <Image
+                      src="/logo/gauri.png"
+                      alt="Gauri Shyam Sakshi Travels logo"
+                      fill
+                      sizes="200px"
+                      className="object-contain p-2"
+                    />
+                  </div>
+                </div>
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-300">Contact</p>
                 <h1 className="mt-3 text-4xl font-bold">Gauri Shyam Sakshi Travels</h1>
                 <p className="mt-2 text-slate-300">Yamuna Nagar</p>

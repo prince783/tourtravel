@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { BusFront } from "lucide-react";
+import { useState } from "react";
 
 import { BlurText } from "@/components/BlurText";
 import { CallButton } from "@/components/CallButton";
@@ -14,6 +17,8 @@ import { YatraCalendar } from "@/components/YatraCalendar";
 import { destinations } from "@/lib/site-data";
 
 export default function Home() {
+  const [selectedDestination, setSelectedDestination] = useState(destinations[0]);
+
   return (
     <>
       <Navbar />
@@ -172,6 +177,52 @@ export default function Home() {
                 </Link>
               </div>
             </Reveal>
+          </div>
+        </section>
+
+        <section className="relative overflow-hidden bg-[#f3eedf] px-4 py-16 md:px-6 md:py-20">
+          <div className="mx-auto max-w-6xl">
+            <div className="text-left md:text-center">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#9a5d3c]">
+                Sacred moments
+              </p>
+              <h2 className="mt-3 text-4xl font-black tracking-tight text-[#5d1d29] md:text-6xl">
+                Gallery
+              </h2>
+              <p className="mt-4 text-base text-slate-700 md:text-lg">
+                Glimpses from our pilgrimage destinations across India.
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-wrap justify-start gap-3 md:justify-center">
+              {destinations.map((destination, index) => (
+                <button
+                  key={destination.slug}
+                  type="button"
+                  aria-pressed={selectedDestination.slug === destination.slug}
+                  onClick={() => setSelectedDestination(destination)}
+                  className={[
+                    "cursor-pointer rounded-full border border-[#7a4d3d]/25 bg-white/40 px-4 py-2 text-sm font-medium text-[#5d1d29] shadow-sm transition hover:-translate-y-0.5 hover:bg-white",
+                    selectedDestination.slug === destination.slug ? "bg-[#681e2a] text-white shadow-[0_10px_20px_rgba(104,30,42,0.2)]" : "",
+                    index === 0 ? "" : "",
+                  ].join(" ")}
+                >
+                  {destination.name}
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-10 flex justify-start">
+              <div className="relative w-full max-w-[420px] overflow-hidden rounded-[28px] border border-[#d7cab6] bg-white p-2 shadow-[0_20px_40px_rgba(43,28,18,0.12)]">
+                <Image
+                  src={selectedDestination.image}
+                  alt={selectedDestination.name}
+                  width={900}
+                  height={680}
+                  className="h-[320px] w-full rounded-[22px] object-cover"
+                />
+              </div>
+            </div>
           </div>
         </section>
 

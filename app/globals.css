@@ -42,6 +42,7 @@ img {
 
 .tempo-badge-wrap {
   isolation: isolate;
+  animation: badgeFloat 4.5s ease-in-out infinite;
 }
 
 .tempo-badge-wrap::before {
@@ -56,12 +57,14 @@ img {
 }
 
 .tempo-badge {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
+  overflow: hidden;
   border: 1px solid rgba(255, 237, 213, 0.7);
   border-radius: 999px;
-  background: #ea580c;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 40%, #c2410c 100%);
   padding: 0.8rem 1.05rem 0.8rem 0.95rem;
   color: #fff;
   font-size: 0.95rem;
@@ -72,15 +75,28 @@ img {
   transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
 
+.tempo-badge::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.32) 45%, transparent 100%);
+  transform: translateX(-120%);
+  animation: badgeShine 3s ease-in-out infinite;
+  content: "";
+}
+
 .tempo-badge:hover {
   border-color: #fed7aa;
   box-shadow: 0 14px 30px rgba(15, 23, 42, 0.38);
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.01);
 }
 
 .tempo-badge:focus-visible {
   outline: 3px solid #fed7aa;
   outline-offset: 3px;
+}
+
+.tempo-badge svg {
+  animation: vehicleMove 2.4s ease-in-out infinite;
 }
 
 .tempo-badge-arrow {
@@ -92,7 +108,7 @@ img {
 
 .tempo-badge:hover .tempo-badge-arrow,
 .tempo-badge:focus-visible .tempo-badge-arrow {
-  transform: translateX(3px);
+  transform: translateX(5px);
 }
 
 .reveal {
@@ -136,6 +152,124 @@ img {
   }
 }
 
+@keyframes badgeShine {
+  0% {
+    transform: translateX(-120%);
+  }
+  50% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes badgeFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.transport-navbar-track {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 1.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(93, 29, 41, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 248, 237, 0.75);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.transport-navbar-track::before,
+.transport-navbar-track::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5rem;
+  content: "";
+  z-index: 1;
+}
+
+.transport-navbar-track::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(255, 248, 237, 1), rgba(255, 248, 237, 0));
+}
+
+.transport-navbar-track::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(255, 248, 237, 1), rgba(255, 248, 237, 0));
+}
+
+.travel-vehicle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 2;
+  display: block;
+  width: 180px;
+  height: 1.6rem;
+  max-width: 100%;
+  min-height: 1.7rem;
+  transform: translate(-100%, -50%);
+  will-change: transform;
+  transition: left 180ms linear;
+  overflow: visible;
+}
+
+.travel-vehicle-body {
+  transform-origin: center;
+  animation: roadBounce 1.8s ease-in-out infinite;
+}
+
+.travel-vehicle-shadow {
+  fill: rgba(15, 23, 42, 0.14);
+  transform-origin: center;
+  animation: shadowPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes roadBounce {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-1.5px);
+  }
+}
+
+@keyframes shadowPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 0.22;
+    transform: scaleX(0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .travel-vehicle,
+  .travel-vehicle-body,
+  .travel-vehicle-shadow {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .travel-vehicle {
+    left: 0 !important;
+    transform: translate(-100%, -50%) !important;
+  }
+}
+
+
 @media (max-width: 639px) {
   .tempo-badge {
     gap: 0.35rem;
@@ -152,9 +286,16 @@ img {
 @media (prefers-reduced-motion: reduce) {
   .tempo-badge-wrap::before,
   .tempo-badge,
-  .tempo-badge-arrow {
-    animation: none;
-    transition: none;
+  .tempo-badge-arrow,
+  .travel-vehicle,
+  .travel-vehicle-body,
+  .travel-vehicle-shadow {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .travel-vehicle {
+    transform: translateX(0) !important;
   }
 }
 

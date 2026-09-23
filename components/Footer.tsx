@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/Reveal";
@@ -10,10 +11,14 @@ export function Footer() {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-2 lg:grid-cols-4 md:px-6">
         <div>
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-400 text-sm font-bold text-slate-900">GS</div>
-            <div>
-              <div className="text-lg font-bold text-white">Gauri Shyam</div>
-              <div className="text-xs uppercase tracking-[0.22em] text-amber-300">Sakshi Travels</div>
+            <div className="relative h-12 w-[150px] overflow-hidden   ">
+              <Image
+                src="/logo/gauri.png"
+                alt="Gauri Shyam Sakshi Travels logo"
+                fill
+                sizes="150px"
+                className="object-contain p-1"
+              />
             </div>
           </div>
           <p className="mt-4 text-sm leading-6 text-slate-300">
