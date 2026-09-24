@@ -220,6 +220,7 @@ export function FeaturedJourneys() {
           >
             {/* MAIN CARD */}
             <button
+              key={activePackage.id}
               type="button"
               onClick={() => goToSlide(activeIndex)}
               aria-label={`Current journey: ${activePackage.name}`}
@@ -242,6 +243,7 @@ export function FeaturedJourneys() {
 
             {/* TOP SMALL CARD - CLICK TO MAKE MAIN */}
             <button
+              key={previousPackage.id}
               type="button"
               onClick={() => goToSlide(previousIndex)}
               aria-label={`Show ${previousPackage.name}`}
@@ -263,6 +265,7 @@ export function FeaturedJourneys() {
 
             {/* RIGHT SMALL CARD - CLICK TO MAKE MAIN */}
             <button
+              key={nextPackage.id}
               type="button"
               onClick={() => goToSlide(nextIndex)}
               aria-label={`Show ${nextPackage.name}`}
