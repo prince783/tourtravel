@@ -45,7 +45,7 @@ export default async function PackageDetailsPage({
           <Reveal direction="left">
             <div>
               <div className="relative h-[420px] overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
-                <Image src={pkg.image} alt={pkg.name} fill sizes="100vw" className="object-cover" />
+                <Image src={pkg.image} alt={pkg.name} fill unoptimized sizes="100vw" className="object-cover" />
               </div>
             </div>
           </Reveal>

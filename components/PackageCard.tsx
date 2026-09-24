@@ -16,6 +16,7 @@ export function PackageCard({ pkg }: { pkg: TourPackage }) {
           src={pkg.image}
           alt={pkg.name}
           fill
+          unoptimized
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition duration-500 group-hover:scale-105"
         />
