@@ -77,7 +77,7 @@ export const destinations: Destination[] = [
   {
     slug: "khatu-shyam",
     name: "Khatu Shyam",
-    image: "/packages/khatushyam.png",
+    image: "/packages/Khatushyam.png",
     description: "A spiritually vibrant destination known for Khatu Shyam Ji and nearby holy stops.",
     relatedPackages: ["Khatu Shyam Dham Yatra"],
   },
@@ -277,7 +277,7 @@ export const packages: TourPackage[] = [
     id: "khatu-shyam-dham-yatra",
     slug: "khatu-shyam-dham-yatra",
     name: "Khatu Shyam Dham Yatra",
-    image: "/packages/khatushyam.png",
+    image: "/packages/Khatushyam.png",
     price: "₹2,100/seat",
     advance: "₹1,000/seat",
     date: "20 June to 22 June 2026",
@@ -478,7 +478,7 @@ export const galleryGroups = [
   {
     slug: "khatu-shyam",
     name: "Khatu Shyam",
-    images: [{ src: "/packages/khatushyam.png", alt: "Khatu Shyam" }],
+    images: [{ src: "/packages/Khatushyam.png", alt: "Khatu Shyam" }],
   },
   {
     slug: "goga-madi",
