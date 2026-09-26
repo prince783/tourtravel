@@ -110,7 +110,7 @@ export default function VideosPage() {
                   </div>
                   <div className="p-4 sm:p-5">
                     <h3 className="text-lg font-bold text-slate-900 sm:text-xl">{video.title}</h3>
-                    <p className="mt-2 text-sm text-slate-600">Pilgrimage travel moments captured during the journey.</p>
+                    <p className="mt-2 text-base leading-7 text-slate-600 sm:text-lg">Pilgrimage travel moments captured during the journey.</p>
                   </div>
                 </div>
               </Reveal>
