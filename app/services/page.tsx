@@ -23,7 +23,7 @@ export default function ServicesPage() {
                 delay={100}
                 className="mb-3 block text-xs font-semibold uppercase tracking-[0.25em] text-amber-700"
               />
-              <h1 className="text-4xl font-bold tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
+              <h1 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
                 <BlurText text="Travel support designed around your pilgrimage" delay={250} />
               </h1>
               <BlurText

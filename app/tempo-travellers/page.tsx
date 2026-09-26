@@ -42,31 +42,31 @@ export default function TempoTravellersPage() {
           <div className="absolute -bottom-48 left-1/4 h-96 w-96 rounded-full border border-emerald-300/10" aria-hidden="true" />
           <div className="relative mx-auto max-w-7xl">
             <div className="hero-copy max-w-3xl">
-                <div className="flex items-center gap-3 text-amber-300">
-                  <BusFront size={22} aria-hidden="true" />
-                  <BlurText
-                    text="Travel together"
-                    delay={100}
-                    className="text-xs font-semibold uppercase tracking-[0.28em]"
-                  />
-                </div>
-                <h1 className="mt-5 text-4xl font-black tracking-tight md:text-6xl">
-                  <BlurText text="Tempo Travellers for every group journey." delay={250} />
-                </h1>
+              <div className="flex items-center gap-3 text-amber-300">
+                <BusFront size={22} aria-hidden="true" />
                 <BlurText
-                  text="Choose the right size for your family, friends or pilgrimage group. Contact us for current availability, route planning and a personalised quote."
-                  delay={450}
-                  className="mt-5 block max-w-2xl text-lg leading-8 text-slate-300 md:text-xl"
+                  text="Travel together"
+                  delay={100}
+                  className="text-xs font-semibold uppercase tracking-[0.28em]"
                 />
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <a
-                    href="#available-vehicles"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 px-6 py-3.5 font-semibold text-slate-950 transition hover:bg-amber-300"
-                  >
-                    View vehicles <ArrowRight size={18} aria-hidden="true" />
-                  </a>
-                  <WhatsAppButton label="Check availability" className="border-emerald-400 bg-emerald-500 hover:bg-emerald-400" message="Hello, I would like to check Tempo Traveller availability and pricing." />
-                </div>
+              </div>
+              <h1 className="mt-5 text-3xl font-bold tracking-tight text-white md:text-4xl">
+                <BlurText text="Tempo Travellers for every group journey." delay={250} />
+              </h1>
+              <BlurText
+                text="Choose the right size for your family, friends or pilgrimage group. Contact us for current availability, route planning and a personalised quote."
+                delay={450}
+                className="mt-5 block max-w-2xl text-base leading-7 text-slate-300 md:text-lg"
+              />
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="#available-vehicles"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 px-6 py-3.5 font-semibold text-slate-950 transition hover:bg-amber-300"
+                >
+                  View vehicles <ArrowRight size={18} aria-hidden="true" />
+                </a>
+                <WhatsAppButton label="Check availability" className="border-emerald-400 bg-emerald-500 hover:bg-emerald-400" message="Hello, I would like to check Tempo Traveller availability and pricing." />
+              </div>
             </div>
           </div>
         </section>

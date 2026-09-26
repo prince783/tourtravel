@@ -38,7 +38,10 @@ export default function DestinationsPage() {
                 delay={index * 120}
                 direction={index % 2 === 0 ? "left" : "right"}
               >
-                <article className="h-full overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
+                <article
+                  id={destination.slug}
+                  className="h-full scroll-mt-28 overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm"
+                >
                   <div className="relative h-64">
                     <Image src={destination.image} alt={destination.name} fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
                   </div>
