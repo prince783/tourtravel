@@ -398,23 +398,25 @@ img {
 }
 
 .nav-link:hover,
-.nav-link:focus-visible,
-.nav-link.active {
+.nav-link:focus-visible {
   color: #0f172a;
   transform: translateY(-2px);
 }
 
 .nav-link:hover::before,
-.nav-link:focus-visible::before,
-.nav-link.active::before {
+.nav-link:focus-visible::before {
   opacity: 1;
   transform: scale(1);
 }
 
 .nav-link:hover::after,
 .nav-link:focus-visible::after,
-.nav-link.active::after {
+.nav-link-active::after {
   width: 75%;
+}
+
+.nav-link-active {
+  font-weight: 700;
 }
 
 .nav-link-label {

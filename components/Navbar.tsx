@@ -74,7 +74,7 @@ export function Navbar() {
                 href={item.href}
                 className={
                   "nav-link group relative inline-flex items-center px-2.5 py-2 text-sm font-semibold tracking-[0.02em] " +
-                  (isActive ? "active text-slate-900" : "text-slate-700")
+                  (isActive ? "nav-link-active text-slate-900" : "text-slate-700")
                 }
               >
                 <span className="nav-link-label relative z-10">{item.label}</span>
@@ -120,7 +120,7 @@ export function Navbar() {
                   onClick={() => setOpen(false)}
                   className={
                     "rounded-xl px-3 py-2 text-base font-medium transition " +
-                    (isActive ? "bg-amber-100 text-slate-900" : "text-slate-700 hover:bg-slate-100")
+                    (isActive ? "font-bold text-slate-900" : "text-slate-700 hover:bg-slate-100")
                   }
                 >
                   {item.label}
