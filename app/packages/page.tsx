@@ -11,7 +11,7 @@ export default function PackagesPage() {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-7xl px-4 pt-34 pb-16 md:px-6 md:pt-36">
+      <main className="mx-auto max-w-7xl px-4 pt-34 pb-12 md:px-6 md:pt-30">
         <div className="hero-copy max-w-2xl">
           <BlurText
             text="Our packages"

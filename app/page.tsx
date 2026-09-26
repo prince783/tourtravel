@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BusFront, CalendarDays, ChevronDown, Headphones, MapPin, Phone, ShieldCheck, Sparkles, User, Users } from "lucide-react";
+import { ArrowRight, CalendarDays, ChevronDown, Headphones, MapPin, Phone, ShieldCheck, Sparkles, User, Users } from "lucide-react";
 import { type FormEvent, useState } from "react";
 
 import { BlurText } from "@/components/BlurText";
@@ -17,9 +17,38 @@ import { YatraCalendar } from "@/components/YatraCalendar";
 import { business, destinations, galleryGroups } from "@/lib/site-data";
 
 const WHATSAPP_BUSINESS_NUMBER = business.whatsappNumber;
+const homeTempoVehicles = [
+  {
+    name: "12 Seater Tempo Traveller",
+    image: "/tempo/tempo12.png",
+    capacity: "Up to 12 travellers",
+    description: "A comfortable choice for families and small yatra groups.",
+  },
+  {
+    name: "16 Seater Tempo Traveller",
+    image: "/tempo/tempo16.png",
+    capacity: "Up to 16 travellers",
+    description: "Extra room for larger family groups travelling together.",
+  },
+  {
+    name: "18 Seater Tempo Traveller",
+    image: "/tempo/tempo18.png",
+    capacity: "Up to 18 travellers",
+    description: "Spacious travel for organised groups and multi-day trips.",
+  },
+];
+const homeGalleryImages = galleryGroups
+  .flatMap((group) => group.images.slice(0, 1))
+  .slice(0, 5);
+const galleryLayout = [
+  "md:col-span-2 md:row-span-2",
+  "md:col-span-1 md:row-span-2",
+  "md:col-span-1",
+  "md:col-span-1",
+  "md:col-span-1",
+];
 
 export default function Home() {
-  const [selectedGalleryGroup, setSelectedGalleryGroup] = useState(galleryGroups[0]);
   const [openFaq, setOpenFaq] = useState(0);
   const [isBookingLoading, setIsBookingLoading] = useState(false);
 
@@ -94,7 +123,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="bg-stone-50 text-slate-900 pt-20 md:pt-28">
+      <main className="bg-stone-50 text-slate-900 pt-20 md:pt-20">
         <section className="home-section-motion relative isolate overflow-hidden">
           <div className="absolute inset-0">
             <video
@@ -249,102 +278,44 @@ export default function Home() {
               </div>
             </Reveal>
 
-            <div className="mt-10 grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
-              <Reveal direction="left">
-                <div className="max-w-xl">
-                  <p className="text-lg leading-8 text-slate-600">
-                    For family yatras and spiritual group travel, comfort and planning matter just as much as the destination itself.
-                  </p>
-
-                  <div className="mt-6 space-y-4">
-                    {[
-                      { icon: Users, text: "Comfortable seating for family and group travel" },
-                      { icon: ShieldCheck, text: "Well-planned support for longer pilgrimage routes" },
-                    ].map(({ icon: Icon, text }) => (
-                      <div key={text} className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_12px_30px_rgba(15,23,42,0.04)]">
-                        <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700">
-                          <Icon size={18} strokeWidth={2.2} aria-hidden="true" />
-                        </span>
-                        <p className="text-sm font-medium text-slate-700 md:text-base">{text}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                    <Link
-                      href="/tempo-travellers"
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 font-semibold text-white transition hover:bg-slate-800"
-                    >
-                      View options <ArrowRight size={17} aria-hidden="true" />
-                    </Link>
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-900 transition hover:bg-slate-100"
-                    >
-                      Request quote
-                    </Link>
-                  </div>
-                </div>
-              </Reveal>
-
-              <Reveal direction="right" delay={140}>
-                <div className="relative overflow-hidden rounded-[32px] border border-slate-200 bg-slate-900 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.12)] md:p-7">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(251,191,36,0.18),_transparent_35%)]" aria-hidden="true" />
-
-                  <div className="relative flex items-center justify-between gap-3">
-                    <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-amber-300">
-                        Reliable travel
-                      </p>
-                      <h3 className="mt-2 text-2xl font-bold text-white md:text-3xl">
-                        Group comfort, first
-                      </h3>
-                    </div>
-                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-400/15 text-amber-300 ring-1 ring-amber-200/20">
-                      <BusFront size={22} aria-hidden="true" />
-                    </span>
-                  </div>
-
-                  <div className="relative mt-8 grid gap-4 sm:grid-cols-3">
-                    {[
-                      { label: "12 Seater", value: "Ideal for families" },
-                      { label: "16 Seater", value: "Balanced & roomy" },
-                      { label: "18 Seater", value: "Best for groups" },
-                    ].map((item) => (
-                      <div key={item.label} className="rounded-[22px] border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">
-                          {item.label}
-                        </p>
-                        <p className="mt-3 text-sm font-medium text-white/90">{item.value}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="relative mt-7 rounded-[26px] border border-amber-100/15 bg-white/5 p-4 md:p-5">
-                    <div className="flex items-center justify-between gap-3">
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-300">Best for</p>
-                        <p className="mt-2 text-xl font-bold text-white">Pilgrimage groups</p>
-                      </div>
-                      <div className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-300">
-                        Ready
+            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+              {homeTempoVehicles.map((vehicle, index) => (
+                <Reveal key={vehicle.name} delay={index * 100} className="h-full">
+                  <article className="flex h-full flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    <div className="relative aspect-4/3 overflow-hidden bg-slate-100">
+                      <Image
+                        src={vehicle.image}
+                        alt={vehicle.name}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 33vw"
+                        className="object-cover transition duration-500 hover:scale-105"
+                      />
+                      <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-slate-950/80 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+                        <Users size={15} aria-hidden="true" /> {vehicle.capacity}
                       </div>
                     </div>
-
-                    <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                      {[
-                        "AC comfort",
-                        "Luggage support",
-                        "Family seating",
-                      ].map((feature) => (
-                        <span key={feature} className="rounded-full border border-white/10 bg-slate-950/40 px-3 py-2 text-center text-xs font-medium text-slate-200">
-                          {feature}
-                        </span>
-                      ))}
+                    <div className="flex flex-1 flex-col p-6">
+                      <h3 className="text-xl font-bold text-slate-900">{vehicle.name}</h3>
+                      <p className="mt-3 leading-7 text-slate-600">{vehicle.description}</p>
                     </div>
-                  </div>
-                </div>
-              </Reveal>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link
+                href="/tempo-travellers"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 font-semibold text-white transition hover:bg-slate-800"
+              >
+                View all options <ArrowRight size={17} aria-hidden="true" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-900 transition hover:bg-slate-100"
+              >
+                Request a quote
+              </Link>
             </div>
           </div>
         </section>
@@ -411,36 +382,45 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              {galleryGroups.map((group) => (
-                <button
-                  key={group.slug}
-                  type="button"
-                  aria-pressed={selectedGalleryGroup.slug === group.slug}
-                  onClick={() => setSelectedGalleryGroup(group)}
-                  className={[
-                    "cursor-pointer rounded-full border border-slate-300 bg-orange-200 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100",
-                    selectedGalleryGroup.slug === group.slug ? "border-slate-900 bg-slate-900 text-white shadow-[0_10px_20px_rgba(15,23,42,0.18)]" : "",
-                  ].join(" ")}
+            <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:auto-rows-55 md:gap-5">
+              {homeGalleryImages.map((image, index) => (
+                <Reveal
+                  key={image.src}
+                  delay={index * 100}
+                  direction={index % 2 === 0 ? "left" : "right"}
+                  className={`h-full ${galleryLayout[index % galleryLayout.length]}`}
                 >
-                  {group.name}
-                </button>
+                  <Link
+                    href="/gallery"
+                    aria-label={`Explore gallery: ${image.alt}`}
+                    className="group relative block h-full min-h-72 overflow-hidden rounded-[18px] border border-white/80 bg-white shadow-[0_12px_28px_rgba(15,23,42,0.1)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.16)] md:min-h-0"
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/45 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
+                    <p className="absolute inset-x-4 bottom-4 translate-y-2 text-left text-sm font-semibold text-white opacity-0 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                      {image.alt}
+                    </p>
+                  </Link>
+                </Reveal>
               ))}
             </div>
 
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {selectedGalleryGroup.images.slice(0, 3).map((image) => (
-                <div key={image.src} className="relative aspect-4/3 overflow-hidden rounded-[22px] border border-slate-200 bg-white p-2 shadow-[0_20px_40px_rgba(15,23,42,0.08)]">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="rounded-[16px] object-cover"
-                  />
-                </div>
-              ))}
-            </div>
+            <Reveal delay={180}>
+              <div className="mt-10 text-center">
+                <Link
+                  href="/gallery"
+                  className="inline-flex items-center gap-2 rounded-full border border-amber-700/40 px-6 py-3 font-semibold text-[#681e2a] transition hover:bg-amber-100"
+                >
+                  Explore full gallery <ArrowRight size={17} aria-hidden="true" />
+                </Link>
+              </div>
+            </Reveal>
           </div>
         </section>
 

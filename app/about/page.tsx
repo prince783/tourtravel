@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main className="about-page relative overflow-hidden bg-stone-50 pt-20 md:pt-16">
+      <main className="about-page relative overflow-hidden bg-stone-50 pt-16 md:pt-12">
         <div className="about-background about-background-top" aria-hidden="true" />
         <div className="about-background about-background-bottom" aria-hidden="true" />
 

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, MessageCircle, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -20,6 +21,7 @@ const navItems = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -63,11 +65,22 @@ export function Navbar() {
         </Link>
 
         <div className="hidden items-center gap-1.5 lg:-ml-4 lg:flex">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="nav-link group relative inline-flex items-center px-2.5 py-2 text-sm font-semibold tracking-[0.02em] text-slate-700">
-              <span className="nav-link-label relative z-10">{item.label}</span>
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={
+                  "nav-link group relative inline-flex items-center px-2.5 py-2 text-sm font-semibold tracking-[0.02em] " +
+                  (isActive ? "active text-slate-900" : "text-slate-700")
+                }
+              >
+                <span className="nav-link-label relative z-10">{item.label}</span>
+              </Link>
+            );
+          })}
         </div>
 
         <div className="hidden shrink-0 items-center gap-2 lg:flex">
@@ -94,60 +107,26 @@ export function Navbar() {
         </div>
       </nav>
 
-      <div className="transport-divider w-full bg-[#09090b]">
-        <div className="mx-auto max-w-7xl overflow-hidden px-2 py-1.5">
-          <div className="transport-navbar-track" aria-hidden="true">
-            <svg
-              viewBox="0 0 520 80"
-              className="travel-vehicle"
-              role="presentation"
-              aria-hidden="true"
-              style={{
-                left: `calc(${vehicleOffset} + ${vehicleExitOffset})`,
-              }}
-            >
-              <defs>
-                <linearGradient id="vehicleBody" x1="0%" x2="100%" y1="0%" y2="0%">
-                  <stop offset="0%" stopColor="#facc15" />
-                  <stop offset="65%" stopColor="#fde68a" />
-                  <stop offset="100%" stopColor="#ffffff" />
-                </linearGradient>
-                <linearGradient id="vehicleGlass" x1="0%" x2="100%" y1="0%" y2="0%">
-                  <stop offset="0%" stopColor="#ffffff" />
-                  <stop offset="100%" stopColor="#f8fafc" />
-                </linearGradient>
-              </defs>
-
-              <ellipse cx="260" cy="72" rx="180" ry="9" className="travel-vehicle-shadow" />
-
-              <g className="travel-vehicle-body">
-                <path d="M38 51 L90 51 L124 37 L222 37 L257 51 L328 51 L358 44 L405 44 L440 51 L468 51 L478 58 L491 58 L491 63 L32 63 L32 58 L38 58 Z" fill="url(#vehicleBody)" stroke="#c9d5df" strokeWidth="1.3" />
-                <path d="M118 38 L186 38 L214 28 L278 28 L299 38 L344 38 L331 51 L110 51 Z" fill="url(#vehicleGlass)" stroke="#b0c4d5" strokeWidth="1.2" />
-                <path d="M333 44 L380 44 L410 52 L333 52 Z" fill="#e8f0f7" stroke="#c9d5df" strokeWidth="1.2" />
-                <path d="M408 44 L440 44 L468 51 L408 51 Z" fill="#edf3f8" stroke="#c9d5df" strokeWidth="1.2" />
-                <path d="M81 52 L111 52" stroke="#d8e2ea" strokeWidth="2.2" strokeLinecap="round" />
-                <path d="M294 52 L328 52" stroke="#d8e2ea" strokeWidth="2.2" strokeLinecap="round" />
-                <path d="M364 52 L404 52" stroke="#d8e2ea" strokeWidth="2.2" strokeLinecap="round" />
-                <circle cx="108" cy="63" r="12" fill="#dfe7ef" stroke="#8a9aad" strokeWidth="2" />
-                <circle cx="108" cy="63" r="5" fill="#7a8ca0" />
-                <circle cx="364" cy="63" r="12" fill="#dfe7ef" stroke="#8a9aad" strokeWidth="2" />
-                <circle cx="364" cy="63" r="5" fill="#7a8ca0" />
-                <path d="M32 58 L38 58 L38 51 L66 51" fill="none" stroke="#e0a02a" strokeWidth="3" strokeLinecap="round" />
-                <path d="M381 44 L385 35 L429 35 L429 44" fill="none" stroke="#d5dee7" strokeWidth="2" strokeLinecap="round" />
-              </g>
-            </svg>
-          </div>
-        </div>
-      </div>
-
       {open ? (
         <div className="border-t border-slate-200 bg-white lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-xl px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-100">
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className={
+                    "rounded-xl px-3 py-2 text-base font-medium transition " +
+                    (isActive ? "bg-amber-100 text-slate-900" : "text-slate-700 hover:bg-slate-100")
+                  }
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
         </div>
       ) : null}

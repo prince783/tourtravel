@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CalendarDays, Clock3, MapPin } from "lucide-react";
 
 import { business, getPackageWhatsAppMessage } from "@/lib/site-data";
 import type { TourPackage } from "@/lib/site-data";
@@ -31,9 +32,9 @@ export function PackageCard({ pkg }: { pkg: TourPackage }) {
         </div>
 
         <div className="space-y-2 text-sm text-slate-600">
-          {pkg.date ? <p>📅 {pkg.date}</p> : null}
-          {pkg.duration ? <p>⏳ {pkg.duration}</p> : null}
-          {pkg.pickupPoints.length ? <p>🚐 Pickup: {pkg.pickupPoints.slice(0, 3).join(" • ")}</p> : null}
+          {pkg.date ? <p className="flex items-center gap-2"><CalendarDays size={16} aria-hidden="true" />{pkg.date}</p> : null}
+          {pkg.duration ? <p className="flex items-center gap-2"><Clock3 size={16} aria-hidden="true" />{pkg.duration}</p> : null}
+          {pkg.pickupPoints.length ? <p className="flex items-center gap-2"><MapPin size={16} aria-hidden="true" /><span>Pickup: {pkg.pickupPoints.slice(0, 3).join(" • ")}</span></p> : null}
         </div>
 
         <div className="flex flex-wrap gap-2">

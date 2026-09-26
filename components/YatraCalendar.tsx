@@ -3,7 +3,14 @@
 import { useState } from "react";
 
 const calendarMonths = [
-  { name: "January", short: "JAN", festivals: ["Makar Sankranti", "Vasant Panchami"] },
+  {
+    name: "January",
+    short: "JAN",
+    festivals: [
+      { name: "Makar Sankranti", date: "14 Jan", dateTime: "2026-01-14" },
+      { name: "Vasant Panchami", date: "23 Jan", dateTime: "2026-01-23" },
+    ],
+  },
   { name: "February", short: "FEB", festivals: ["Maha Shivratri", "Phulera Dooj"] },
   { name: "March", short: "MAR", festivals: ["Holi", "Chaitra Navratri"] },
   { name: "April", short: "APR", festivals: ["Ram Navami", "Hanuman Jayanti"] },
@@ -58,12 +65,20 @@ export function YatraCalendar() {
               <h3 className="mt-2 text-3xl font-bold text-[#8d071c]">{month.name}</h3>
             </div>
             <div className="space-y-4 p-6 md:p-7">
-              {month.festivals.map((festival) => (
-                <div key={festival} className="flex items-center gap-4 rounded-2xl border border-amber-100 bg-[#fffdfa] px-4 py-4 text-[#8d071c]">
-                  <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#dcaeb4]" aria-hidden="true" />
-                  <span>{festival}</span>
-                </div>
-              ))}
+              {month.festivals.map((festival) => {
+                const name = typeof festival === "string" ? festival : festival.name;
+                const date = typeof festival === "string" ? undefined : festival;
+
+                return (
+                  <div key={name} className="flex items-center justify-between gap-4 rounded-2xl border border-amber-100 bg-[#fffdfa] px-4 py-4 text-[#8d071c]">
+                    <div className="flex min-w-0 items-center gap-4">
+                      <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#dcaeb4]" aria-hidden="true" />
+                      <span>{name}</span>
+                    </div>
+                    {date ? <time className="shrink-0 text-sm font-semibold" dateTime={date.dateTime}>{date.date}</time> : null}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

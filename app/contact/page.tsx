@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { ClipboardList, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { BlurText } from "@/components/BlurText";
 import { Navbar } from "@/components/Navbar";
@@ -10,7 +10,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="about-page relative overflow-hidden bg-stone-50 px-8 pt-34 pb-16 md:px-6 md:pt-36">
+      <main className="about-page relative overflow-hidden bg-stone-50 px-8 pt-30 pb-16 md:px-6 md:pt-30">
         <div className="about-background about-background-top" aria-hidden="true" />
         <div className="about-background about-background-bottom" aria-hidden="true" />
 
@@ -34,30 +34,60 @@ export default function ContactPage() {
           <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <Reveal direction="left">
               <div className="h-full rounded-[28px] bg-slate-900 p-8 text-white shadow-sm">
-                <div className="mb-4 flex justify-center sm:justify-start">
-                  <div className="relative h-16 w-[200px] overflow-hidden ">
-                    <Image
-                      src="/logo/gauri.png"
-                      alt="Gauri Shyam Sakshi Travels logo"
-                      fill
-                      sizes="200px"
-                      className="object-contain p-2"
-                    />
-                  </div>
-                </div>
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-300">Contact</p>
                 <h1 className="mt-3 text-4xl font-bold">Gauri Shyam Sakshi Travels</h1>
-                <p className="mt-2 text-slate-300">Yamuna Nagar</p>
 
-                <div className="mt-8 space-y-4 text-slate-200">
-                  <p><strong className="text-white">Phone:</strong> <a href={business.phoneHref}>{business.phoneDisplay}</a></p>
-                  <p><strong className="text-white">WhatsApp:</strong> <a href={business.whatsappHref} target="_blank" rel="noreferrer">{business.phoneDisplay}</a></p>
-                  <p><strong className="text-white">Email:</strong> <a href={business.emailHref}>{business.email}</a></p>
+                <div className="mt-8 space-y-6 text-slate-200">
+                  <div className="flex items-center gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-400 text-slate-900 shadow-lg shadow-amber-950/20">
+                      <MapPin size={19} aria-hidden="true" />
+                    </span>
+                    <div>
+                      <p className="font-semibold text-white">Location</p>
+                      <p className="mt-1 text-sm text-slate-300">Yamuna Nagar, Haryana</p>
+                      <p className="mt-1 text-xs text-slate-400">Serving your travel needs with convenient pickup arrangements.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-400 text-slate-900 shadow-lg shadow-amber-950/20">
+                      <Mail size={19} aria-hidden="true" />
+                    </span>
+                    <div>
+                      <p className="font-semibold text-white">Email Us</p>
+                      <a className="mt-1 block text-sm text-slate-300 transition hover:text-white" href={business.emailHref}>{business.email}</a>
+                      <p className="mt-1 text-xs text-slate-400">We&apos;re just an email away.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-400 text-slate-900 shadow-lg shadow-amber-950/20">
+                      <Phone size={19} aria-hidden="true" />
+                    </span>
+                    <div>
+                      <p className="font-semibold text-white">Call Us</p>
+                      <a className="mt-1 block text-sm text-slate-300 transition hover:text-white" href={business.phoneHref}>{business.phoneDisplay}</a>
+                      <p className="mt-1 text-xs text-slate-400">Talk to us about your journey.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-400 text-slate-900 shadow-lg shadow-amber-950/20">
+                      <MessageCircle size={19} aria-hidden="true" />
+                    </span>
+                    <div>
+                      <p className="font-semibold text-white">WhatsApp Us</p>
+                      <a className="mt-1 block text-sm text-slate-300 transition hover:text-white" href={business.whatsappHref} target="_blank" rel="noreferrer">{business.phoneDisplay}</a>
+                      <p className="mt-1 text-xs text-slate-400">Connect with us for quick assistance.</p>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <a href={business.whatsappHref} target="_blank" rel="noreferrer" className="wa-button inline-flex items-center justify-center rounded-full px-5 py-3 font-medium text-white">WhatsApp</a>
                   <a href={business.phoneHref} className="inline-flex items-center justify-center rounded-full bg-amber-400 px-5 py-3 font-medium text-slate-900">Call Now</a>
+                </div>
+
+                <div className="mt-8 flex gap-3 border-t border-white/15 pt-5 text-sm text-slate-300">
+                  <ClipboardList size={18} className="mt-0.5 shrink-0 text-amber-300" aria-hidden="true" />
+                  <p><strong className="text-white">For a quicker quote:</strong> share your destination or preferred package, pickup point, travel date, number of travellers, and any special travel requirements.</p>
                 </div>
               </div>
             </Reveal>
