@@ -120,7 +120,9 @@ export function Navbar() {
                   onClick={() => setOpen(false)}
                   className={
                     "rounded-xl px-3 py-2 text-base font-medium transition " +
-                    (isActive ? "font-bold text-slate-900" : "text-slate-700 hover:bg-slate-100")
+                    (isActive
+                      ? "bg-amber-400 font-bold text-slate-900 shadow-sm"
+                      : "text-slate-700 hover:bg-slate-100")
                   }
                 >
                   {item.label}

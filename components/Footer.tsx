@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MapPin, Phone, MessageCircle, Mail } from "lucide-react";
 
 import { Reveal } from "@/components/Reveal";
 import { business, packages } from "@/lib/site-data";
@@ -97,16 +98,22 @@ export function Footer() {
             <div className="rounded-[24px] border border-white/10 bg-white/[0.02] p-5">
               <h3 className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-300">Contact</h3>
               <ul className="mt-4 space-y-3 text-sm text-slate-300">
-                <li className="rounded-xl border border-white/5 bg-slate-900/60 px-3 py-2">{business.location}</li>
-                <li className="rounded-xl border border-white/5 bg-slate-900/60 px-3 py-2">
+                <li className="flex items-start gap-3 rounded-xl border border-white/5 bg-slate-900/60 px-3 py-2">
+                  <MapPin size={16} className="mt-0.5 shrink-0 text-amber-300" />
+                  <span>{business.location}</span>
+                </li>
+                <li className="flex items-start gap-3 rounded-xl border border-white/5 bg-slate-900/60 px-3 py-2">
+                  <Phone size={16} className="mt-0.5 shrink-0 text-amber-300" />
                   <a href={business.phoneHref} className="transition hover:text-white">{business.phoneDisplay}</a>
                 </li>
-                <li className="rounded-xl border border-white/5 bg-slate-900/60 px-3 py-2">
+                <li className="flex items-start gap-3 rounded-xl border border-white/5 bg-slate-900/60 px-3 py-2">
+                  <MessageCircle size={16} className="mt-0.5 shrink-0 text-amber-300" />
                   <a href={business.whatsappHref} target="_blank" rel="noreferrer" className="transition hover:text-white">
                     WhatsApp: {business.phoneDisplay}
                   </a>
                 </li>
-                <li className="rounded-xl border border-white/5 bg-slate-900/60 px-3 py-2">
+                <li className="flex items-start gap-3 rounded-xl border border-white/5 bg-slate-900/60 px-3 py-2">
+                  <Mail size={16} className="mt-0.5 shrink-0 text-amber-300" />
                   <a href={business.emailHref} className="transition hover:text-white">{business.email}</a>
                 </li>
               </ul>
