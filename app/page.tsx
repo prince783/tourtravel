@@ -13,7 +13,6 @@ import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { YatraCalendar } from "@/components/YatraCalendar";
 import { business, destinations, galleryGroups } from "@/lib/site-data";
 
 const WHATSAPP_BUSINESS_NUMBER = business.whatsappNumber;
@@ -491,8 +490,6 @@ export default function Home() {
             </Reveal>
           </div>
         </section>
-
-        <YatraCalendar />
 
         <TestimonialsCarousel />
 
