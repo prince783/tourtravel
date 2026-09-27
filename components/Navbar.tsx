@@ -43,6 +43,23 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
   return (
     <header
       className={
@@ -98,7 +115,9 @@ export function Navbar() {
           </Link>
           <button
             type="button"
-            aria-label="Toggle menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
             onClick={() => setOpen((prev) => !prev)}
             className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-900 shadow-sm"
           >
@@ -108,8 +127,33 @@ export function Navbar() {
       </nav>
 
       {open ? (
-        <div className="border-t border-slate-200 bg-white lg:hidden">
-          <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4">
+        <div
+          id="mobile-navigation"
+          className="fixed inset-0 z-60 flex h-dvh flex-col bg-white lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
+        >
+          <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
+            <Link href="/" onClick={() => setOpen(false)} aria-label="Gauri Shyam Sakshi Travels home">
+              <Image
+                src="/logo/gauri.png"
+                alt="Gauri Shyam Sakshi Travels logo"
+                width={210}
+                height={56}
+                className="h-14 w-52.5 object-contain"
+              />
+            </Link>
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={() => setOpen(false)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-900 shadow-sm"
+            >
+              <X size={18} />
+            </button>
+          </div>
+          <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto px-4 py-5">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
 
@@ -119,7 +163,7 @@ export function Navbar() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={
-                    "rounded-xl px-3 py-2 text-base font-medium transition " +
+                    "rounded-lg px-4 py-3 text-lg font-medium transition " +
                     (isActive
                       ? "bg-amber-400 font-bold text-slate-900 shadow-sm"
                       : "text-slate-700 hover:bg-slate-100")

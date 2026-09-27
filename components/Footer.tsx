@@ -124,15 +124,15 @@ export function Footer() {
 
       <div className="relative border-t border-slate-800/90 bg-slate-950/80">
         <div className="mx-auto flex max-w-7xl flex-row flex-nowrap items-center justify-between gap-2 overflow-x-auto whitespace-nowrap px-4 pt-5 pb-24 text-[12px] text-slate-400 md:flex-row md:items-center md:justify-between md:gap-4 md:px-6 md:py-5 md:text-sm">
-          <div className="order-2 flex flex-nowrap items-center gap-2 md:order-none md:gap-4">
+          <div className="order-2 flex flex-nowrap items-center gap-2 md:order-2 md:gap-4">
             <Link href="/privacy-policy" className="hidden transition hover:text-white md:inline-flex">Privacy Policy</Link>
             <Link href="/terms" className="hidden transition hover:text-white md:inline-flex">Terms &amp; Conditions</Link>
             <a href="https://softfyr.com/" target="_blank" rel="noreferrer" className="font-medium text-slate-300 transition hover:text-amber-300">
               Developed by Softfyr Technology
             </a>
           </div>
-          <p className="order-1 shrink-0 md:block">© {new Date().getFullYear()} {business.name}.</p>
-          <p className="hidden shrink-0 md:block">© {new Date().getFullYear()} {business.name}. All rights reserved.</p>
+          <p className="order-1 shrink-0 md:order-0">© {new Date().getFullYear()} {business.name}.</p>
+          <p className="hidden shrink-0">© {new Date().getFullYear()} {business.name}. All rights reserved.</p>
         </div>
       </div>
     </footer>
