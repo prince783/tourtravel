@@ -26,11 +26,9 @@ export default function ServicesPage() {
               <h1 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
                 <BlurText text="Travel support designed around your pilgrimage" delay={250} />
               </h1>
-              <BlurText
-                text="We offer complete guidance and travel support for spiritual journeys, helping families and groups plan a smooth, well-organised pilgrimage with thoughtful route selection, reliable transport coordination, comfortable accommodation arrangements, and practical on-trip assistance. Whether you are travelling for darshan, a family yatra, or a group devotional trip, our approach is focused on reducing stress, saving time, and creating a meaningful experience from the moment you begin planning to the day you return home. From travel planning to practical support, we make each journey easier, safer and more focused on devotion."
-                delay={450}
-                className="mt-5 block text-base leading-8 text-slate-600 md:text-lg"
-              />
+              <p className="mt-5 block text-base leading-8 text-slate-600 md:text-lg">
+                We offer complete guidance and travel support for spiritual journeys, helping families and groups plan a smooth, well-organised pilgrimage with thoughtful route selection, reliable transport coordination, comfortable accommodation arrangements, and practical on-trip assistance. Whether you are travelling for darshan, a family yatra, or a group devotional trip, our approach is focused on reducing stress, saving time, and creating a meaningful experience from the moment you begin planning to the day you return home. From travel planning to practical support, we make each journey easier, safer and more focused on devotion.
+              </p>
               
 
             </div>
